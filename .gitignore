@@ -2,4 +2,5 @@
 .tmp/
 CLAUDE.md
 Thumbs.db
-.DS_Storewebsite/
+.DS_Store
+website/
