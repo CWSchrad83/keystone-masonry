@@ -227,6 +227,9 @@ h2.section-title{
   margin:.5rem 0 .15rem;
 }
 
+.link-accent { color: #c0392b; font-weight: 500; text-decoration: none; }
+.link-accent:hover { text-decoration: underline; }
+
 /* ─── Responsive ─────────────────────────────────────────────────── */
 @media(max-width:900px){
   .photo-grid{grid-template-columns:repeat(2,1fr);}
@@ -246,26 +249,26 @@ h2.section-title{
 <body>
 
 <!-- ─── Nav ──────────────────────────────────────────────────────── -->
-<nav class="nav">
+<nav class="nav" aria-label="Site navigation">
   <a class="nav-brand" href="index.html">Keystone Masonry &amp; Construction</a>
   <a class="nav-link" href="index.html">← Back to Home</a>
 </nav>
 
 <!-- ─── Page header ─────────────────────────────────────────────── -->
-<div class="page-header">
+<header class="page-header">
   <p class="page-eyebrow">Project Photos</p>
   <h1 class="page-title">Masonry Work Across Rochester NY</h1>
   <p class="page-intro">
     Real projects completed by Don DeManno across Monroe County and the surrounding area.
     Every job here came through a referral.
   </p>
-</div>
+</header>
 
 <!-- ─── Projects: Three Monroe County Jobs ───────────────────────── -->
 <section>
 
   <p class="section-eyebrow">Projects — Monroe County</p>
-  <h2 class="section-title">Recent Work</h2>
+  <h2 class="section-title">Recent Masonry Work — Monroe County</h2>
 
   <div class="photo-grid">
 
@@ -369,7 +372,7 @@ h2.section-title{
 <section>
 
   <p class="section-eyebrow">Additional Work</p>
-  <h2 class="section-title">More Recent Projects</h2>
+  <h2 class="section-title">More Masonry Projects — Rochester NY</h2>
 
   <div class="photo-grid">
 
@@ -427,38 +430,44 @@ h2.section-title{
     concrete installed with proper base prep and expansion joints.
   </p>
 
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem;">
+  <div class="photo-grid" style="margin-bottom:2rem;">
     <div class="photo-card">
-      <img src="images/IMG_5745.jpeg"
-           alt="Failed cobblestone and flagstone driveway before removal — Rochester NY"
-           loading="lazy"
-           style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+      <picture>
+        <source srcset="images/IMG_5745.webp" type="image/webp">
+        <img src="images/IMG_5745.jpeg"
+             alt="Failed cobblestone and flagstone driveway before removal — Rochester NY"
+             loading="lazy">
+      </picture>
       <p class="photo-phase">Before</p>
     </div>
     <div class="photo-card">
-      <img src="images/IMG_6894.jpeg"
-           alt="Wire mesh reinforcement grid laid before concrete pour — Rochester NY"
-           loading="lazy"
-           style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+      <picture>
+        <source srcset="images/IMG_6894.webp" type="image/webp">
+        <img src="images/IMG_6894.jpeg"
+             alt="Wire mesh reinforcement grid laid before concrete pour — Rochester NY"
+             loading="lazy">
+      </picture>
       <p class="photo-phase">During</p>
     </div>
     <div class="photo-card">
-      <img src="images/IMG_6926.jpeg"
-           alt="Completed broom-finish concrete driveway — Keystone Masonry Rochester NY"
-           loading="lazy"
-           style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+      <picture>
+        <source srcset="images/IMG_6926.webp" type="image/webp">
+        <img src="images/IMG_6926.jpeg"
+             alt="Completed broom-finish concrete driveway — Keystone Masonry Rochester NY"
+             loading="lazy">
+      </picture>
       <p class="photo-phase">After</p>
     </div>
   </div>
 
-  <a href="driveway-restoration-rochester-ny.html" style="color:#c0392b;font-weight:500;">
+  <a href="driveway-restoration-rochester-ny.html" class="link-accent">
     View full project with all before &amp; after photos →
   </a>
 
 </section>
 
 <!-- ─── CTA ───────────────────────────────────────────────────────── -->
-<div class="cta-section">
+<section class="cta-section" aria-label="Call to action">
 
   <h2>See Something You Need Done?</h2>
   <p>Call Don for a free on-site estimate. He'll come out, look at the job, and give you a straight number.</p>
@@ -466,16 +475,18 @@ h2.section-title{
   <a class="cta-phone" href="tel:+15854901600">585-490-1600</a>
   <p class="cta-note">Free on-site estimates across Rochester, Monroe County, Ontario County, and Wayne County.</p>
 
-</div>
+</section>
 
 <!-- ─── Footer ────────────────────────────────────────────────────── -->
-<div class="footer">
-  &copy; <script>document.write(new Date().getFullYear())</script> Keystone Masonry &amp; Construction &nbsp;&bull;&nbsp;
+<footer class="footer">
+  <p>&copy; <span id="current-year"></span> Keystone Masonry &amp; Construction &nbsp;&bull;&nbsp;
   <a href="index.html">Home</a> &nbsp;&bull;&nbsp;
   <a href="chimney-repair-rochester-ny.html">Chimney Repair</a> &nbsp;&bull;&nbsp;
-  <a href="tel:+15854901600">585-490-1600</a><br>
-  Serving Rochester NY, Monroe County, Ontario County, and Wayne County.
-</div>
+  <a href="driveway-restoration-rochester-ny.html">Driveway Restoration</a> &nbsp;&bull;&nbsp;
+  <a href="tel:+15854901600">585-490-1600</a></p>
+  <p>Serving Rochester NY, Monroe County, Ontario County, and Wayne County.</p>
+</footer>
+<script>document.getElementById("current-year").textContent = new Date().getFullYear();</script>
 
 </body>
 </html>

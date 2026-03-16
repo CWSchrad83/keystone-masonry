@@ -287,6 +287,19 @@ h2 {
   background: #fff;
   border-color: #c4cede;
 }
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1.75rem;
+}
+.link-accent {
+  color: var(--color-accent);
+  font-weight: 500;
+  text-decoration: none;
+}
+.link-accent:hover { text-decoration: underline; }
+.gallery-footer-link { margin-top: 1.75rem; }
 
 /* ── TRUST BAR ── */
 .trust {
@@ -357,43 +370,6 @@ h2 {
   white-space: nowrap;
 }
 .service-card a:hover { text-decoration: underline; }
-
-/* ── GALLERY (homepage teaser) ── */
-.gallery-shell {
-  margin-top: 2rem;
-  padding: 1.25rem;
-  border: 1px solid var(--color-border);
-  border-radius: calc(var(--radius) + 4px);
-  background: rgba(255, 255, 255, 0.6);
-  box-shadow: var(--shadow-card);
-}
-.gallery-groups {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.4rem;
-}
-.gallery-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-.gallery-group-title {
-  margin: 0 0 0.5rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--color-text);
-}
-.gallery-frame {
-  overflow: hidden;
-  border-radius: 16px;
-  border: 1px solid #dbe3f0;
-  background: #fff;
-}
-.gallery-group img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
 
 /* ── PHOTO GALLERY GRID ── */
 .photo-gallery-grid {
@@ -614,7 +590,6 @@ details[open] summary::after { content: "\2212"; }
 }
 @media (max-width: 900px) {
   .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .gallery-groups { grid-template-columns: 1fr; }
   .process-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 720px) {
@@ -632,7 +607,7 @@ details[open] summary::after { content: "\2212"; }
     height: 260px;
   }
   .services-grid, .process-grid { grid-template-columns: 1fr; }
-  .gallery-shell, .faq-list { padding: 1rem; }
+  .faq-list { padding: 1rem; }
   .mobile-call-bar {
     display: block;
     position: fixed;
@@ -672,7 +647,7 @@ details[open] summary::after { content: "\2212"; }
   <div class="hero__content">
     <div class="hero__content-inner">
       <p class="eyebrow">Rochester NY Masonry Contractor</p>
-      <h1 class="hero__title">First-Class Masonry Work.<br />Built to Last.</h1>
+      <h1 class="hero__title">First-Class Masonry Work<br />in Rochester NY. Built to Last.</h1>
       <p class="hero__subtitle">
         With well over three decades of masonry experience, Don DeManno has earned
         the reputation of a first-class mechanic. Keystone Masonry &amp; Construction
@@ -874,8 +849,8 @@ details[open] summary::after { content: "\2212"; }
 
     </div>
 
-    <p style="margin-top:1.75rem;">
-      <a href="projects-rochester-ny.html" style="color:var(--color-accent);font-weight:500;text-decoration:none;">
+    <p class="gallery-footer-link">
+      <a href="projects-rochester-ny.html" class="link-accent">
         View full project details and all photos →
       </a>
     </p>
@@ -883,65 +858,65 @@ details[open] summary::after { content: "\2212"; }
 </section>
 
 <!-- LIGHTBOXES -->
-<div id="lb-fw" class="lightbox" role="dialog" aria-label="Front walkway photo">
-  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+<div id="lb-fw" class="lightbox" role="dialog" aria-modal="true" aria-label="Front walkway photo">
+  <a href="#gallery-photos" class="lightbox__close" role="button" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/front-walkway.webp" type="image/webp" />
   <img class="lightbox__img" src="images/front-walkway.jpg" alt="Stamped concrete front walkway" /></picture>
-  <span class="lightbox__caption">Front walkway</span>
+  <p class="lightbox__caption">Front walkway</p>
 </div>
-<div id="lb-cr" class="lightbox" role="dialog" aria-label="Chimney rebuild photo">
-  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+<div id="lb-cr" class="lightbox" role="dialog" aria-modal="true" aria-label="Chimney rebuild photo">
+  <a href="#gallery-photos" class="lightbox__close" role="button" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/chimney-rebuild.webp" type="image/webp" />
   <img class="lightbox__img" src="images/chimney-rebuild.jpg" alt="Full brick chimney rebuild" /></picture>
-  <span class="lightbox__caption">Chimney rebuild</span>
+  <p class="lightbox__caption">Chimney rebuild</p>
 </div>
-<div id="lb-csv" class="lightbox" role="dialog" aria-label="Cultured stone veneer photo">
-  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+<div id="lb-csv" class="lightbox" role="dialog" aria-modal="true" aria-label="Cultured stone veneer photo">
+  <a href="#gallery-photos" class="lightbox__close" role="button" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/cultured-stone-veneer.webp" type="image/webp" />
   <img class="lightbox__img" src="images/cultured-stone-veneer.jpg" alt="Cultured stone veneer, stamped cap" /></picture>
-  <span class="lightbox__caption">Cultured stone veneer, stamped cap</span>
+  <p class="lightbox__caption">Cultured stone veneer, stamped cap</p>
 </div>
-<div id="lb-sas" class="lightbox" role="dialog" aria-label="Segmented arch steps photo">
-  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+<div id="lb-sas" class="lightbox" role="dialog" aria-modal="true" aria-label="Segmented arch steps photo">
+  <a href="#gallery-photos" class="lightbox__close" role="button" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/segmented-arch-steps.webp" type="image/webp" />
   <img class="lightbox__img" src="images/segmented-arch-steps.jpg" alt="Segmented arch steps" /></picture>
-  <span class="lightbox__caption">Segmented arch steps</span>
+  <p class="lightbox__caption">Segmented arch steps</p>
 </div>
-<div id="lb-sp" class="lightbox" role="dialog" aria-label="Stamped patio pre-seal photo">
-  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+<div id="lb-sp" class="lightbox" role="dialog" aria-modal="true" aria-label="Stamped patio pre-seal photo">
+  <a href="#gallery-photos" class="lightbox__close" role="button" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/stamped-patio.webp" type="image/webp" />
   <img class="lightbox__img" src="images/stamped-patio.jpg" alt="Stamped patio pre-seal" /></picture>
-  <span class="lightbox__caption">Stamped patio — pre-seal</span>
+  <p class="lightbox__caption">Stamped patio — pre-seal</p>
 </div>
-<div id="lb-spd" class="lightbox" role="dialog" aria-label="Stamped patio post-seal photo">
-  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+<div id="lb-spd" class="lightbox" role="dialog" aria-modal="true" aria-label="Stamped patio post-seal photo">
+  <a href="#gallery-photos" class="lightbox__close" role="button" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/stamped-patio-detail.webp" type="image/webp" />
   <img class="lightbox__img" src="images/stamped-patio-detail.jpg" alt="Stamped patio post-seal" /></picture>
-  <span class="lightbox__caption">Same patio — post-seal</span>
+  <p class="lightbox__caption">Same patio — post-seal</p>
 </div>
-<div id="lb-fpo" class="lightbox" role="dialog" aria-label="Front porch overlay photo">
-  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+<div id="lb-fpo" class="lightbox" role="dialog" aria-modal="true" aria-label="Front porch overlay photo">
+  <a href="#gallery-photos" class="lightbox__close" role="button" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/front-porch-overlay.webp" type="image/webp" />
   <img class="lightbox__img" src="images/front-porch-overlay.jpg" alt="Front porch overlay, Pittsford" /></picture>
-  <span class="lightbox__caption">Front porch overlay — Pittsford</span>
+  <p class="lightbox__caption">Front porch overlay — Pittsford</p>
 </div>
-<div id="lb-bf" class="lightbox" role="dialog" aria-label="Broom finish photo">
-  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+<div id="lb-bf" class="lightbox" role="dialog" aria-modal="true" aria-label="Broom finish photo">
+  <a href="#gallery-photos" class="lightbox__close" role="button" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/broom-finish-concrete.webp" type="image/webp" />
   <img class="lightbox__img" src="images/broom-finish-concrete.jpg" alt="Broom finish concrete" /></picture>
-  <span class="lightbox__caption">Broom finish — Monroe County</span>
+  <p class="lightbox__caption">Broom finish — Monroe County</p>
 </div>
-<div id="lb-fw2" class="lightbox" role="dialog" aria-label="Form work photo">
-  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+<div id="lb-fw2" class="lightbox" role="dialog" aria-modal="true" aria-label="Form work photo">
+  <a href="#gallery-photos" class="lightbox__close" role="button" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/form-work-for-steps.webp" type="image/webp" />
   <img class="lightbox__img" src="images/form-work-for-steps.jpg" alt="Form work and base set" /></picture>
-  <span class="lightbox__caption">Form work and base set</span>
+  <p class="lightbox__caption">Form work and base set</p>
 </div>
-<div id="lb-bw" class="lightbox" role="dialog" aria-label="Basement wall rebuild photo">
-  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+<div id="lb-bw" class="lightbox" role="dialog" aria-modal="true" aria-label="Basement wall rebuild photo">
+  <a href="#gallery-photos" class="lightbox__close" role="button" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/basement-wall-rebuild.webp" type="image/webp" />
   <img class="lightbox__img" src="images/basement-wall-rebuild.jpg" alt="Basement wall rebuild" /></picture>
-  <span class="lightbox__caption">Basement wall rebuild</span>
+  <p class="lightbox__caption">Basement wall rebuild</p>
 </div>
 
 <!-- PROCESS -->
@@ -983,7 +958,7 @@ details[open] summary::after { content: "\2212"; }
       </p>
       <p class="contact-phone"><a href="tel:+15854901600">585-490-1600</a></p>
       <p class="contact-email"><a href="mailto:don@stonemasonryny.com">don@stonemasonryny.com</a></p>
-      <div class="hero__actions">
+      <div class="btn-row">
         <a class="btn" href="tel:+15854901600">Call Now</a>
         <a class="btn btn--secondary" href="mailto:don@stonemasonryny.com">Send an Email</a>
       </div>

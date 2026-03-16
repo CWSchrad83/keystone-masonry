@@ -44,11 +44,6 @@
       "Wayne County NY"
     ]
   },
-  "areaServed": [
-    "Monroe County NY",
-    "Ontario County NY",
-    "Wayne County NY"
-  ],
   "serviceType": "Chimney Repair"
 }
 </script>
@@ -226,19 +221,6 @@ a:hover{color:#96281b;}
 }
 
 .btn:hover{background:#96281b;color:white;}
-
-.btn-outline{
-  display:inline-block;
-  padding:.9rem 2rem;
-  margin-top:1rem;
-  border:2px solid #c0392b;
-  color:#c0392b;
-  text-decoration:none;
-  font-size:.95rem;
-  font-weight:500;
-}
-
-.btn-outline:hover{background:#c0392b;color:white;}
 
 /* ─── Trust bar ─────────────────────────────────────────────────── */
 .trust{
@@ -516,6 +498,8 @@ details[open] summary::after{
   background:#f0f3f9;
 }
 
+.featured-project .section-eyebrow { color: #8090b8; }
+
 /* ─── Footer ────────────────────────────────────────────────────── */
 .footer{
   background:#1a1a1a;
@@ -580,7 +564,7 @@ details[open] summary::after{
 <body>
 
 <!-- ─── Nav ──────────────────────────────────────────────────────── -->
-<nav class="nav">
+<nav class="nav" aria-label="Site navigation">
   <a class="nav-brand" href="index.html">Keystone Masonry &amp; Construction</a>
   <a class="nav-link" href="index.html">← Back to Home</a>
 </nav>
@@ -690,7 +674,7 @@ details[open] summary::after{
 <section class="repair-section">
 
   <p class="section-eyebrow">Making the Call</p>
-  <h2 class="section-title">Repair or Rebuild — What's the Right Answer?</h2>
+  <h2 class="section-title">Chimney Repair or Rebuild — Making the Right Call</h2>
   <p class="section-intro">
     Not every damaged chimney needs to come down. And not every "repair" will hold if the underlying masonry is too far gone.
     After thirty years of chimney work in Rochester, Don's read on this is straightforward: if it can be fixed right, fix it.
@@ -734,7 +718,7 @@ details[open] summary::after{
 <!-- ─── Featured project ────────────────────────────────────────────── -->
 <section class="featured-project">
 
-  <p class="section-eyebrow" style="color:#8090b8;">Featured Project</p>
+  <p class="section-eyebrow">Featured Project</p>
   <h2 class="section-title">Full Chimney Rebuild, Rochester NY</h2>
   <p class="section-intro">
     This chimney had reached the end of what repairs could accomplish. Spalling brick across three sides, eroded mortar joints, and a crown that had been patched more than once. We took it down to the roofline and rebuilt it: new brick, new mortar, properly formed crown, and step flashing replaced at the roof joint. The homeowner found us through a referral from a neighbor we'd done a patio for the previous year.
@@ -867,21 +851,21 @@ details[open] summary::after{
 </section>
 
 <!-- ─── CTA ───────────────────────────────────────────────────────────── -->
-<div class="cta-section">
+<section class="cta-section" aria-label="Call to action">
 
-  <h2>Don't Wait on a Leaking Chimney</h2>
+  <h3>Don't Wait on a Leaking Chimney</h3>
   <p>If your chimney is leaking or the masonry is starting to break down, it's better to deal with it now than after another Rochester winter makes it worse. Call for a free estimate — Don will come out, take a look, and tell you straight what it needs.</p>
 
   <a class="cta-phone" href="tel:+15854901600">585-490-1600</a>
   <p class="cta-note">Free on-site estimates across Rochester, Monroe County, Ontario County, and Wayne County.</p>
 
-</div>
+</section>
 
 <!-- ─── Why Homeowners Call Keystone ──────────────────────────────── -->
 <section>
 
   <p class="section-eyebrow">Credentials</p>
-  <h2 class="section-title">Why Homeowners Call Keystone</h2>
+  <h3 class="section-title">Why Homeowners Call Keystone</h3>
   <p class="section-intro">ACI Certified Concrete Finisher. Journeyman Bricklayer through Bricklayers &amp; Allied Craftworkers. Every job Don has done has come through a referral.</p>
 
   <div class="problems-grid">
@@ -918,7 +902,7 @@ details[open] summary::after{
 <section class="contact" id="contact">
 
   <p class="section-eyebrow">Free Estimate</p>
-  <h2 class="section-title">Request a Chimney Repair Estimate</h2>
+  <h3 class="section-title">Request a Chimney Repair Estimate</h3>
 
   <p style="color:#6b7a99;max-width:600px;margin-bottom:1.5rem;">
     Tell us what's going on with your chimney and we'll come out for a free look. No charge, no pressure — just a straight read on what the work actually involves.
@@ -936,13 +920,15 @@ details[open] summary::after{
 </section>
 
 <!-- ─── Footer ────────────────────────────────────────────────────────── -->
-<div class="footer">
-  &copy; <script>document.write(new Date().getFullYear())</script> Keystone Masonry &amp; Construction &nbsp;&bull;&nbsp;
+<footer class="footer">
+  <p>&copy; <span id="current-year"></span> Keystone Masonry &amp; Construction &nbsp;&bull;&nbsp;
   <a href="index.html">Home</a> &nbsp;&bull;&nbsp;
   <a href="projects-rochester-ny.html">Project Photos</a> &nbsp;&bull;&nbsp;
-  <a href="tel:+15854901600">585-490-1600</a><br>
-  Serving Rochester NY, Monroe County, Ontario County, and Wayne County.
-</div>
+  <a href="driveway-restoration-rochester-ny.html">Driveway Restoration</a> &nbsp;&bull;&nbsp;
+  <a href="tel:+15854901600">585-490-1600</a></p>
+  <p>Serving Rochester NY, Monroe County, Ontario County, and Wayne County.</p>
+</footer>
+<script>document.getElementById("current-year").textContent = new Date().getFullYear();</script>
 
 </body>
 </html>
