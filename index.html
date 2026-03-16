@@ -186,7 +186,7 @@ h2 {
 /* ── HERO ── */
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   min-height: calc(100vh - 52px);
   padding: 0;
   background:
@@ -358,7 +358,7 @@ h2 {
 }
 .service-card a:hover { text-decoration: underline; }
 
-/* ── GALLERY ── */
+/* ── GALLERY (homepage teaser) ── */
 .gallery-shell {
   margin-top: 2rem;
   padding: 1.25rem;
@@ -377,17 +377,9 @@ h2 {
   flex-direction: column;
   gap: 0.6rem;
 }
-.gallery-label {
-  margin-bottom: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-accent);
-}
 .gallery-group-title {
-  margin: 0 0 0.8rem;
-  font-size: 1rem;
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -401,6 +393,83 @@ h2 {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+}
+
+/* ── PHOTO GALLERY GRID ── */
+.photo-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.gallery-thumb {
+  display: block;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  background: #f0f3f8;
+  cursor: zoom-in;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.gallery-thumb:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(20, 34, 64, 0.12);
+}
+.gallery-thumb img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+.gallery-thumb-label {
+  display: block;
+  padding: 0.55rem 0.9rem 0.65rem;
+  font-size: 0.84rem;
+  color: var(--color-text-muted);
+  background: #fff;
+}
+
+/* ── LIGHTBOX ── */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(10, 18, 40, 0.94);
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+.lightbox:target { display: flex; }
+.lightbox__img {
+  max-width: min(92vw, 1100px);
+  max-height: 88vh;
+  border-radius: 10px;
+  object-fit: contain;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+.lightbox__close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.8rem;
+  color: rgba(255,255,255,0.7);
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 300;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.lightbox__close:hover { color: #fff; }
+.lightbox__caption {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.6);
+  font-size: 0.88rem;
+  white-space: nowrap;
 }
 
 /* ── PROCESS ── */
@@ -731,56 +800,149 @@ details[open] summary::after { content: "\2212"; }
   </div>
 </section>
 
-<!-- PROJECT GALLERY — RAISED STAMPED PATIO -->
-<section class="section-tint" id="gallery" aria-labelledby="gallery-heading">
+<!-- PHOTO GALLERY -->
+<section class="section-tint" id="gallery-photos" aria-labelledby="gallery-heading">
   <div class="container">
-    <p class="eyebrow">Recent Work</p>
-    <h2 id="gallery-heading">A sample of recent projects.</h2>
+    <p class="eyebrow">Photo Gallery</p>
+    <h2 id="gallery-heading">Recent work, in photos.</h2>
     <p class="section-intro">
-      Three separate jobs across Monroe County — all referrals.
+      A selection of completed projects across Monroe County and the surrounding area.
+      Click any photo to enlarge.
     </p>
-    <div class="gallery-shell">
-      <div class="gallery-groups">
-        <article class="gallery-group">
-          <p class="gallery-group-title">Form work and base set</p>
-          <div class="gallery-frame">
-            <picture>
-              <source srcset="images/form-work-for-steps.webp" type="image/webp" />
-              <img
-                src="images/form-work-for-steps.jpg"
-                alt="Form work and gravel base for masonry steps — Keystone Masonry Rochester NY"
-                loading="lazy" />
-            </picture>
-          </div>
-        </article>
-        <article class="gallery-group">
-          <p class="gallery-group-title">Cultured stone veneer, stamped cap</p>
-          <div class="gallery-frame">
-            <picture>
-              <source srcset="images/cultured-stone-veneer.webp" type="image/webp" />
-              <img
-                src="images/cultured-stone-veneer.jpg"
-                alt="Cultured stone veneer on raised patio platform with stamped concrete cap — Keystone Masonry Rochester NY"
-                loading="lazy" />
-            </picture>
-          </div>
-        </article>
-        <article class="gallery-group">
-          <p class="gallery-group-title">Segmented arch steps</p>
-          <div class="gallery-frame">
-            <picture>
-              <source srcset="images/segmented-arch-steps.webp" type="image/webp" />
-              <img
-                src="images/segmented-arch-steps.jpg"
-                alt="Segmented arch steps — Keystone Masonry Rochester NY"
-                loading="lazy" />
-            </picture>
-          </div>
-        </article>
-      </div>
+
+    <div class="photo-gallery-grid">
+
+      <a href="#lb-fw" class="gallery-thumb">
+        <picture><source srcset="images/front-walkway.webp" type="image/webp" />
+        <img src="images/front-walkway.jpg" alt="Stamped concrete front walkway" loading="lazy" /></picture>
+        <span class="gallery-thumb-label">Front walkway</span>
+      </a>
+
+      <a href="#lb-cr" class="gallery-thumb">
+        <picture><source srcset="images/chimney-rebuild.webp" type="image/webp" />
+        <img src="images/chimney-rebuild.jpg" alt="Full brick chimney rebuild" loading="lazy" /></picture>
+        <span class="gallery-thumb-label">Chimney rebuild</span>
+      </a>
+
+      <a href="#lb-csv" class="gallery-thumb">
+        <picture><source srcset="images/cultured-stone-veneer.webp" type="image/webp" />
+        <img src="images/cultured-stone-veneer.jpg" alt="Cultured stone veneer, stamped cap" loading="lazy" /></picture>
+        <span class="gallery-thumb-label">Cultured stone veneer, stamped cap</span>
+      </a>
+
+      <a href="#lb-sas" class="gallery-thumb">
+        <picture><source srcset="images/segmented-arch-steps.webp" type="image/webp" />
+        <img src="images/segmented-arch-steps.jpg" alt="Segmented arch steps" loading="lazy" /></picture>
+        <span class="gallery-thumb-label">Segmented arch steps</span>
+      </a>
+
+      <a href="#lb-sp" class="gallery-thumb">
+        <picture><source srcset="images/stamped-patio.webp" type="image/webp" />
+        <img src="images/stamped-patio.jpg" alt="Stamped patio pre-seal" loading="lazy" /></picture>
+        <span class="gallery-thumb-label">Stamped patio — pre-seal</span>
+      </a>
+
+      <a href="#lb-spd" class="gallery-thumb">
+        <picture><source srcset="images/stamped-patio-detail.webp" type="image/webp" />
+        <img src="images/stamped-patio-detail.jpg" alt="Stamped patio post-seal" loading="lazy" /></picture>
+        <span class="gallery-thumb-label">Same patio — post-seal</span>
+      </a>
+
+      <a href="#lb-fpo" class="gallery-thumb">
+        <picture><source srcset="images/front-porch-overlay.webp" type="image/webp" />
+        <img src="images/front-porch-overlay.jpg" alt="Front porch overlay, Pittsford" loading="lazy" /></picture>
+        <span class="gallery-thumb-label">Front porch overlay — Pittsford</span>
+      </a>
+
+      <a href="#lb-bf" class="gallery-thumb">
+        <picture><source srcset="images/broom-finish-concrete.webp" type="image/webp" />
+        <img src="images/broom-finish-concrete.jpg" alt="Broom finish concrete" loading="lazy" /></picture>
+        <span class="gallery-thumb-label">Broom finish — Monroe County</span>
+      </a>
+
+      <a href="#lb-fw2" class="gallery-thumb">
+        <picture><source srcset="images/form-work-for-steps.webp" type="image/webp" />
+        <img src="images/form-work-for-steps.jpg" alt="Form work and base set" loading="lazy" /></picture>
+        <span class="gallery-thumb-label">Form work and base set</span>
+      </a>
+
+      <a href="#lb-bw" class="gallery-thumb">
+        <picture><source srcset="images/basement-wall-rebuild.webp" type="image/webp" />
+        <img src="images/basement-wall-rebuild.jpg" alt="Basement wall rebuild" loading="lazy" /></picture>
+        <span class="gallery-thumb-label">Basement wall rebuild</span>
+      </a>
+
     </div>
+
+    <p style="margin-top:1.75rem;">
+      <a href="projects-rochester-ny.html" style="color:var(--color-accent);font-weight:500;text-decoration:none;">
+        View full project details and all photos →
+      </a>
+    </p>
   </div>
 </section>
+
+<!-- LIGHTBOXES -->
+<div id="lb-fw" class="lightbox" role="dialog" aria-label="Front walkway photo">
+  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+  <picture><source srcset="images/front-walkway.webp" type="image/webp" />
+  <img class="lightbox__img" src="images/front-walkway.jpg" alt="Stamped concrete front walkway" /></picture>
+  <span class="lightbox__caption">Front walkway</span>
+</div>
+<div id="lb-cr" class="lightbox" role="dialog" aria-label="Chimney rebuild photo">
+  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+  <picture><source srcset="images/chimney-rebuild.webp" type="image/webp" />
+  <img class="lightbox__img" src="images/chimney-rebuild.jpg" alt="Full brick chimney rebuild" /></picture>
+  <span class="lightbox__caption">Chimney rebuild</span>
+</div>
+<div id="lb-csv" class="lightbox" role="dialog" aria-label="Cultured stone veneer photo">
+  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+  <picture><source srcset="images/cultured-stone-veneer.webp" type="image/webp" />
+  <img class="lightbox__img" src="images/cultured-stone-veneer.jpg" alt="Cultured stone veneer, stamped cap" /></picture>
+  <span class="lightbox__caption">Cultured stone veneer, stamped cap</span>
+</div>
+<div id="lb-sas" class="lightbox" role="dialog" aria-label="Segmented arch steps photo">
+  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+  <picture><source srcset="images/segmented-arch-steps.webp" type="image/webp" />
+  <img class="lightbox__img" src="images/segmented-arch-steps.jpg" alt="Segmented arch steps" /></picture>
+  <span class="lightbox__caption">Segmented arch steps</span>
+</div>
+<div id="lb-sp" class="lightbox" role="dialog" aria-label="Stamped patio pre-seal photo">
+  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+  <picture><source srcset="images/stamped-patio.webp" type="image/webp" />
+  <img class="lightbox__img" src="images/stamped-patio.jpg" alt="Stamped patio pre-seal" /></picture>
+  <span class="lightbox__caption">Stamped patio — pre-seal</span>
+</div>
+<div id="lb-spd" class="lightbox" role="dialog" aria-label="Stamped patio post-seal photo">
+  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+  <picture><source srcset="images/stamped-patio-detail.webp" type="image/webp" />
+  <img class="lightbox__img" src="images/stamped-patio-detail.jpg" alt="Stamped patio post-seal" /></picture>
+  <span class="lightbox__caption">Same patio — post-seal</span>
+</div>
+<div id="lb-fpo" class="lightbox" role="dialog" aria-label="Front porch overlay photo">
+  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+  <picture><source srcset="images/front-porch-overlay.webp" type="image/webp" />
+  <img class="lightbox__img" src="images/front-porch-overlay.jpg" alt="Front porch overlay, Pittsford" /></picture>
+  <span class="lightbox__caption">Front porch overlay — Pittsford</span>
+</div>
+<div id="lb-bf" class="lightbox" role="dialog" aria-label="Broom finish photo">
+  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+  <picture><source srcset="images/broom-finish-concrete.webp" type="image/webp" />
+  <img class="lightbox__img" src="images/broom-finish-concrete.jpg" alt="Broom finish concrete" /></picture>
+  <span class="lightbox__caption">Broom finish — Monroe County</span>
+</div>
+<div id="lb-fw2" class="lightbox" role="dialog" aria-label="Form work photo">
+  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+  <picture><source srcset="images/form-work-for-steps.webp" type="image/webp" />
+  <img class="lightbox__img" src="images/form-work-for-steps.jpg" alt="Form work and base set" /></picture>
+  <span class="lightbox__caption">Form work and base set</span>
+</div>
+<div id="lb-bw" class="lightbox" role="dialog" aria-label="Basement wall rebuild photo">
+  <a href="#gallery-photos" class="lightbox__close" aria-label="Close">&times;</a>
+  <picture><source srcset="images/basement-wall-rebuild.webp" type="image/webp" />
+  <img class="lightbox__img" src="images/basement-wall-rebuild.jpg" alt="Basement wall rebuild" /></picture>
+  <span class="lightbox__caption">Basement wall rebuild</span>
+</div>
 
 <!-- PROCESS -->
 <section aria-labelledby="process-heading">
