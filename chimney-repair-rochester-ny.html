@@ -106,7 +106,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"/>
-
+<link rel="preload" as="image" href="images/chimney-rebuild.webp" type="image/webp" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.keystonemasonryny.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Chimney Repair Rochester NY", "item": "https://www.keystonemasonryny.com/chimney-repair-rochester-ny.html"}
+  ]
+}
+</script>
 <style>
 /* ─── Base ─────────────────────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;}
@@ -569,6 +579,9 @@ details[open] summary::after{
   <a class="nav-link" href="index.html">← Back to Home</a>
 </nav>
 
+<!-- ─── Main content ────────────────────────────────────────────── -->
+<main>
+
 <!-- ─── Hero ─────────────────────────────────────────────────────── -->
 <section class="hero">
 
@@ -596,7 +609,7 @@ details[open] summary::after{
   <div class="hero-right">
     <picture>
       <source srcset="images/chimney-rebuild.webp" type="image/webp">
-      <img src="images/chimney-rebuild.jpg" alt="Full brick chimney rebuild by Keystone Masonry, Rochester NY" loading="eager">
+      <img src="images/chimney-rebuild.jpg" alt="Full brick chimney rebuild by Keystone Masonry, Rochester NY" loading="eager" fetchpriority="high">
     </picture>
   </div>
 
@@ -918,6 +931,8 @@ details[open] summary::after{
   </p>
 
 </section>
+
+</main>
 
 <!-- ─── Footer ────────────────────────────────────────────────────────── -->
 <footer class="footer">

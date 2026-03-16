@@ -43,6 +43,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="preload" as="image" href="images/form-work-for-steps.webp" type="image/webp" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.keystonemasonryny.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Masonry Projects Rochester NY", "item": "https://www.keystonemasonryny.com/projects-rochester-ny.html"}
+  ]
+}
+</script>
 <style>
 /* ─── Base ─────────────────────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;}
@@ -254,6 +265,9 @@ h2.section-title{
   <a class="nav-link" href="index.html">← Back to Home</a>
 </nav>
 
+<!-- ─── Main content ────────────────────────────────────────────── -->
+<main>
+
 <!-- ─── Page header ─────────────────────────────────────────────── -->
 <header class="page-header">
   <p class="page-eyebrow">Project Photos</p>
@@ -277,7 +291,8 @@ h2.section-title{
         <source srcset="images/form-work-for-steps.webp" type="image/webp">
         <img src="images/form-work-for-steps.jpg"
              alt="Form work and gravel base set for masonry steps — Keystone Masonry Rochester NY"
-             loading="lazy">
+             loading="eager"
+             fetchpriority="high">
       </picture>
       <p class="photo-label">Form work and base set</p>
     </div>
@@ -433,8 +448,8 @@ h2.section-title{
   <div class="photo-grid" style="margin-bottom:2rem;">
     <div class="photo-card">
       <picture>
-        <source srcset="images/IMG_5745.webp" type="image/webp">
-        <img src="images/IMG_5745.jpeg"
+        <source srcset="images/cobblestone-driveway-damage-before-demo-rochester-ny.webp" type="image/webp">
+        <img src="images/cobblestone-driveway-damage-before-demo-rochester-ny.jpeg"
              alt="Failed cobblestone and flagstone driveway before removal — Rochester NY"
              loading="lazy">
       </picture>
@@ -442,8 +457,8 @@ h2.section-title{
     </div>
     <div class="photo-card">
       <picture>
-        <source srcset="images/IMG_6894.webp" type="image/webp">
-        <img src="images/IMG_6894.jpeg"
+        <source srcset="images/driveway-wire-mesh-before-concrete-pour-rochester-ny.webp" type="image/webp">
+        <img src="images/driveway-wire-mesh-before-concrete-pour-rochester-ny.jpeg"
              alt="Wire mesh reinforcement grid laid before concrete pour — Rochester NY"
              loading="lazy">
       </picture>
@@ -451,8 +466,8 @@ h2.section-title{
     </div>
     <div class="photo-card">
       <picture>
-        <source srcset="images/IMG_6926.webp" type="image/webp">
-        <img src="images/IMG_6926.jpeg"
+        <source srcset="images/driveway-broom-finish-completed-rochester-ny.webp" type="image/webp">
+        <img src="images/driveway-broom-finish-completed-rochester-ny.jpeg"
              alt="Completed broom-finish concrete driveway — Keystone Masonry Rochester NY"
              loading="lazy">
       </picture>
@@ -476,6 +491,8 @@ h2.section-title{
   <p class="cta-note">Free on-site estimates across Rochester, Monroe County, Ontario County, and Wayne County.</p>
 
 </section>
+
+</main>
 
 <!-- ─── Footer ────────────────────────────────────────────────────── -->
 <footer class="footer">
