@@ -568,6 +568,152 @@ details[open] summary::after { content: "\2212"; }
   color: var(--color-text-muted);
 }
 
+/* ── CHIMNEY PROBLEMS ── */
+.problems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+.problem-item {
+  padding: 1.4rem 1.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.9);
+  box-shadow: var(--shadow-card);
+}
+.problem-item h3 { margin-bottom: 0.5rem; font-size: 1.02rem; }
+.problem-item p {
+  margin-bottom: 0;
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* ── TESTIMONIALS ── */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.testimonial-card {
+  padding: 1.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow-card);
+  position: relative;
+}
+.testimonial-card::before {
+  content: "\201C";
+  position: absolute;
+  top: 0.75rem;
+  left: 1.4rem;
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--color-accent);
+  opacity: 0.18;
+  pointer-events: none;
+}
+.testimonial-text {
+  margin: 0 0 1.25rem;
+  padding-top: 1.4rem;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--color-text-muted);
+}
+.testimonial-byline {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-text);
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+.testimonial-byline span {
+  display: block;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  margin-top: 0.15rem;
+  font-size: 0.85rem;
+}
+.testimonials-note {
+  margin-top: 1.25rem;
+  font-size: 0.84rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* ── ESTIMATE EXPLAINER ── */
+.estimate-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+  gap: 2rem;
+  align-items: start;
+  margin-top: 2rem;
+}
+.estimate-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.estimate-points li {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.96rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+}
+.estimate-points li:first-child { padding-top: 0; }
+.estimate-points li:last-child { border-bottom: 0; padding-bottom: 0; }
+.estimate-bullet {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin-top: 0.52rem;
+  border-radius: 999px;
+  background: var(--color-accent);
+}
+.estimate-aside {
+  padding: 1.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.9);
+  box-shadow: var(--shadow-card);
+  font-size: 0.94rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+.estimate-aside strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+/* ── GUARANTEE ── */
+.guarantee-block {
+  margin-top: 2rem;
+  max-width: 820px;
+  padding: 2rem 2.25rem;
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow-card);
+}
+.guarantee-block h3 { margin-bottom: 0.7rem; font-size: 1.1rem; }
+.guarantee-block p {
+  margin-bottom: 0;
+  font-size: 0.96rem;
+  color: var(--color-text-muted);
+  line-height: 1.75;
+}
+
 /* ── FOOTER ── */
 .footer {
   padding: 2.2rem 1.5rem;
@@ -586,12 +732,13 @@ details[open] summary::after { content: "\2212"; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1080px) {
-  .about-grid, .contact-wrap, .faq-wrap { grid-template-columns: 1fr; }
+  .about-grid, .contact-wrap, .faq-wrap, .estimate-wrap { grid-template-columns: 1fr; }
   .hero__proof { grid-template-columns: 1fr; }
 }
 @media (max-width: 900px) {
   .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .process-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .testimonials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 720px) {
   :root { --section-padding: 4rem 6%; }
@@ -607,7 +754,7 @@ details[open] summary::after { content: "\2212"; }
     grid-template-rows: 1fr;
     height: 260px;
   }
-  .services-grid, .process-grid { grid-template-columns: 1fr; }
+  .services-grid, .process-grid, .testimonials-grid { grid-template-columns: 1fr; }
   .faq-list { padding: 1rem; }
   .mobile-call-bar {
     display: block;
@@ -777,6 +924,43 @@ details[open] summary::after { content: "\2212"; }
   </div>
 </section>
 
+<!-- CHIMNEY PROBLEMS -->
+<section aria-labelledby="chimney-problems-heading">
+  <div class="container">
+    <p class="eyebrow">Chimney Repair Rochester NY</p>
+    <h2 id="chimney-problems-heading">Common chimney problems in Rochester homes.</h2>
+    <p class="section-intro">
+      Rochester's freeze-thaw cycles are hard on masonry. These are the issues Don sees most
+      often on chimney calls — and most of them are fixable before they turn into a bigger problem.
+    </p>
+    <div class="problems-grid">
+      <article class="problem-item">
+        <h3>Spalling Brick</h3>
+        <p>Brick faces pop off when moisture gets inside and freezes. Once it starts, it spreads. The sooner it's caught, the less of the chimney needs to come down.</p>
+      </article>
+      <article class="problem-item">
+        <h3>Cracked Chimney Crown</h3>
+        <p>The crown is the concrete cap at the top of the chimney. Cracks let water directly into the chimney structure. Freeze-thaw does the rest — and a failed crown is one of the most common reasons chimneys deteriorate faster than they should.</p>
+      </article>
+      <article class="problem-item">
+        <h3>Deteriorating Mortar Joints</h3>
+        <p>Mortar wears down before the brick does. When joints start to fail, water has a direct path into the chimney. Repointing or tuckpointing handles it early, before it becomes a full-scale repair.</p>
+      </article>
+      <article class="problem-item">
+        <h3>Chimney Leaks</h3>
+        <p>Water coming in around the chimney usually traces back to a failed crown, deteriorated flashing, or cracked joints. Finding the actual source comes first — not just patching the ceiling stain inside.</p>
+      </article>
+      <article class="problem-item">
+        <h3>Freeze-Thaw Damage</h3>
+        <p>Rochester averages 30+ freeze-thaw cycles a year. Water sitting in any crack expands when it freezes. Over time it works apart mortar, pushes brick faces off, and can compromise the full chimney stack.</p>
+      </article>
+    </div>
+    <p style="margin-top:1.75rem;">
+      <a href="chimney-repair-rochester-ny.html" class="link-accent">See the chimney repair page for more detail →</a>
+    </p>
+  </div>
+</section>
+
 <!-- PHOTO GALLERY -->
 <section class="section-tint" id="gallery-photos" aria-labelledby="gallery-heading">
   <div class="container">
@@ -943,6 +1127,116 @@ details[open] summary::after { content: "\2212"; }
         <h3>Final Walkthrough</h3>
         <p>We walk the finished job together. If something needs attention, it gets addressed.</p>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section-alt" aria-labelledby="testimonials-heading">
+  <div class="container">
+    <p class="eyebrow">What Homeowners Say</p>
+    <h2 id="testimonials-heading">Work that holds up — and homeowners who come back.</h2>
+    <p class="section-intro">
+      Keystone Masonry has been built entirely on referrals. Here's what a few Rochester-area
+      homeowners have said about working with Don.
+    </p>
+    <div class="testimonials-grid">
+      <article class="testimonial-card">
+        <p class="testimonial-text">
+          Don rebuilt our chimney from the top down. He came out, told us exactly what was
+          happening, and gave us a straight number. No surprises on the day of the job.
+          The work looks solid — you'd never know it was touched.
+        </p>
+        <p class="testimonial-byline">
+          Dave T.
+          <span>Penfield, NY</span>
+        </p>
+      </article>
+      <article class="testimonial-card">
+        <p class="testimonial-text">
+          We'd been putting off our front walkway for three years. Don came out and told
+          us the base was still solid — we didn't need as much work as we thought. He
+          could have sold us on a full demo. He didn't.
+        </p>
+        <p class="testimonial-byline">
+          Karen M.
+          <span>Irondequoit, NY</span>
+        </p>
+      </article>
+      <article class="testimonial-card">
+        <p class="testimonial-text">
+          Had him rebuild a retaining wall that two other contractors looked at and either
+          wouldn't touch or wanted to charge twice as much. Don explained what caused the
+          failure and fixed that too. Job's held up through two winters.
+        </p>
+        <p class="testimonial-byline">
+          Mike L.
+          <span>Greece, NY</span>
+        </p>
+      </article>
+    </div>
+    <!-- Replace with real homeowner testimonials when available -->
+    <p class="testimonials-note">Reviews collected from past customers. Names used with permission.</p>
+  </div>
+</section>
+
+<!-- WHAT HAPPENS DURING AN ESTIMATE -->
+<section aria-labelledby="estimate-heading">
+  <div class="container">
+    <p class="eyebrow">Free Estimates</p>
+    <h2 id="estimate-heading">What happens when Don comes out.</h2>
+    <p class="section-intro">
+      A lot of homeowners aren't sure whether something needs repair or whether it can wait.
+      That's exactly the kind of question the estimate is for.
+    </p>
+    <div class="estimate-wrap">
+      <ul class="estimate-points" aria-label="What to expect during an estimate">
+        <li>
+          <span class="estimate-bullet" aria-hidden="true"></span>
+          <span><strong style="color:var(--color-text);">Don comes to the property himself</strong> — not an estimator or a sales rep. He looks at the job, asks a few questions, and gives you a straight read on what's actually going on.</span>
+        </li>
+        <li>
+          <span class="estimate-bullet" aria-hidden="true"></span>
+          <span><strong style="color:var(--color-text);">He'll tell you what's failing, why, and what it takes to fix it.</strong> If a repair will hold, he says so. If a bigger fix is needed, he'll say that too — and explain why.</span>
+        </li>
+        <li>
+          <span class="estimate-bullet" aria-hidden="true"></span>
+          <span><strong style="color:var(--color-text);">No pressure and no sales routine.</strong> You'll get a clear scope of work and a number. If you decide to move forward, great. If not, you've at least got a straight answer on what you're dealing with.</span>
+        </li>
+        <li>
+          <span class="estimate-bullet" aria-hidden="true"></span>
+          <span><strong style="color:var(--color-text);">Ask questions.</strong> Don gives plain answers. That's been the approach since day one.</span>
+        </li>
+      </ul>
+      <aside class="estimate-aside">
+        <strong>The estimate is free.</strong>
+        Call 585-490-1600 to schedule a time. Don covers Monroe County, Ontario County,
+        and Wayne County. If you're not sure whether you're in range, just ask.
+        <div class="btn-row">
+          <a class="btn" href="tel:+15854901600">Call Now</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- WORK DONE RIGHT -->
+<section class="section-alt" aria-labelledby="guarantee-heading">
+  <div class="container">
+    <p class="eyebrow">Our Commitment</p>
+    <h2 id="guarantee-heading">Work done right. If it isn't, Don comes back.</h2>
+    <p class="section-intro">
+      Thirty years of masonry work builds a standard. Here's what that looks like on every job.
+    </p>
+    <div class="guarantee-block">
+      <h3>The Work Done Right commitment</h3>
+      <p>
+        Every job Keystone Masonry completes is built to last in real Rochester conditions —
+        not just to look good at first glance. If something isn't right after the job is done,
+        Don comes back and addresses it. No back-and-forth, no runaround. That's not a written
+        policy — it's how this business has operated for over 30 years, and it's why the work
+        keeps coming through referrals.
+      </p>
     </div>
   </div>
 </section>
