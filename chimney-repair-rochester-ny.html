@@ -107,6 +107,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"/>
 <link rel="preload" as="image" href="images/chimney-rebuild.webp" type="image/webp" />
+<link rel="stylesheet" href="subpage.css"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -118,49 +119,6 @@
 }
 </script>
 <style>
-/* ─── Base ─────────────────────────────────────────────────────── */
-*,*::before,*::after{box-sizing:border-box;}
-
-body{
-  font-family:Inter,sans-serif;
-  margin:0;
-  color:#1a2744;
-  line-height:1.6;
-  background:white;
-}
-
-section{
-  padding:4rem 8%;
-}
-
-a{color:#c0392b;}
-a:hover{color:#96281b;}
-
-/* ─── Nav ───────────────────────────────────────────────────────── */
-.nav{
-  background:#1a1a1a;
-  padding:.9rem 8%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.nav-brand{
-  color:white;
-  font-family:"Playfair Display",serif;
-  font-size:1.1rem;
-  text-decoration:none;
-  letter-spacing:.02em;
-}
-
-.nav-link{
-  color:#ccc;
-  text-decoration:none;
-  font-size:.9rem;
-}
-
-.nav-link:hover{color:white;}
-
 /* ─── Hero ──────────────────────────────────────────────────────── */
 .hero{
   display:grid;
@@ -231,17 +189,6 @@ a:hover{color:#96281b;}
 }
 
 .btn:hover{background:#96281b;color:white;}
-
-/* ─── Trust bar ─────────────────────────────────────────────────── */
-.trust{
-  background:#f7f8fb;
-  border-top:1px solid #d0d8e8;
-  border-bottom:1px solid #d0d8e8;
-  text-align:center;
-  padding:.9rem 1rem;
-  font-size:.85rem;
-  color:#6b7a99;
-}
 
 /* ─── Section headers ───────────────────────────────────────────── */
 .section-eyebrow{
@@ -464,67 +411,12 @@ details[open] summary::after{
   max-width:680px;
 }
 
-/* ─── CTA section ───────────────────────────────────────────────── */
-.cta-section{
-  background:#1a2744;
-  color:white;
-  text-align:center;
-  padding:4rem 8%;
-}
-
-.cta-section h2{
-  font-family:"Playfair Display",serif;
-  font-size:2.2rem;
-  margin:0 0 .75rem;
-  color:white;
-}
-
-.cta-section p{
-  color:#b0bdd8;
-  max-width:540px;
-  margin:0 auto 1.5rem;
-}
-
-.cta-phone{
-  display:block;
-  font-size:2.4rem;
-  font-weight:600;
-  color:white;
-  text-decoration:none;
-  margin-bottom:.5rem;
-  letter-spacing:.02em;
-}
-
-.cta-phone:hover{color:#f0c040;}
-
-.cta-note{
-  font-size:.82rem;
-  color:#8090b8;
-  margin-top:.25rem;
-}
-
 /* ─── Contact ───────────────────────────────────────────────────── */
 .contact{
   background:#f0f3f9;
 }
 
 .featured-project .section-eyebrow { color: #8090b8; }
-
-/* ─── Footer ────────────────────────────────────────────────────── */
-.footer{
-  background:#1a1a1a;
-  color:white;
-  padding:2rem 8%;
-  text-align:center;
-  font-size:.85rem;
-  line-height:1.9;
-}
-
-.footer a{
-  color:#aaa;
-}
-
-.footer a:hover{color:white;}
 
 /* ─── Responsive ─────────────────────────────────────────────────── */
 @media(max-width:900px){
@@ -789,26 +681,6 @@ details[open] summary::after{
 
 </section>
 
-<!-- ─── SEO: Services summary ─────────────────────────────────────────── -->
-<section>
-
-  <p class="section-eyebrow">What We Repair</p>
-  <h2 class="section-title">Chimney Repair Services in Rochester NY</h2>
-
-  <ul style="color:#6b7a99;font-size:.93rem;line-height:2.1;padding-left:1.5rem;max-width:680px;margin:1rem 0 1.5rem;">
-    <li>Spalling chimney brick — face loss from freeze-thaw moisture cycling</li>
-    <li>Cracked chimney crowns — concrete deterioration exposing the flue</li>
-    <li>Chimney leaks during winter thaw — crown, flashing, or mortar failures</li>
-    <li>Deteriorating mortar joints — repointing and tuckpointing</li>
-    <li>Chimney rebuilds after freeze-thaw damage — partial and full rebuilds to the roofline</li>
-  </ul>
-
-  <p class="section-intro" style="margin-bottom:0;">
-    Rochester's freeze-thaw cycles damage masonry chimneys faster than almost any other climate condition. Moisture works into the brick or mortar, freezes, and expands — causing spalling, cracking, and structural deterioration. Catching it early is almost always less expensive than a full rebuild.
-  </p>
-
-</section>
-
 <!-- ─── FAQ ──────────────────────────────────────────────────────────── -->
 <section class="faq-section">
 
@@ -871,43 +743,6 @@ details[open] summary::after{
 
   <a class="cta-phone" href="tel:+15854901600">585-490-1600</a>
   <p class="cta-note">Free on-site estimates across Rochester, Monroe County, Ontario County, and Wayne County.</p>
-
-</section>
-
-<!-- ─── Why Homeowners Call Keystone ──────────────────────────────── -->
-<section>
-
-  <p class="section-eyebrow">Credentials</p>
-  <h3 class="section-title">Why Homeowners Call Keystone</h3>
-  <p class="section-intro">ACI Certified Concrete Finisher. Journeyman Bricklayer through Bricklayers &amp; Allied Craftworkers. Every job Don has done has come through a referral.</p>
-
-  <div class="problems-grid">
-
-    <div class="problem-card">
-      <span class="problem-icon" aria-hidden="true">⚒️</span>
-      <h3>30+ Years Experience</h3>
-      <p>
-        Owner Don DeManno has over three decades of masonry experience repairing chimneys, patios, retaining walls, and structural masonry across the Rochester area.
-      </p>
-    </div>
-
-    <div class="problem-card">
-      <span class="problem-icon" aria-hidden="true">🤝</span>
-      <h3>Built on Referrals</h3>
-      <p>
-        We don't advertise. Homeowners call because someone they know had work done and told them to call Don.
-      </p>
-    </div>
-
-    <div class="problem-card">
-      <span class="problem-icon" aria-hidden="true">📋</span>
-      <h3>Free Estimates</h3>
-      <p>
-        If your chimney is leaking or starting to deteriorate, we'll take a look and explain exactly what's going on before you commit to any work.
-      </p>
-    </div>
-
-  </div>
 
 </section>
 

@@ -50,6 +50,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"/>
 <link rel="preload" as="image" href="images/cobblestone-driveway-damage-before-demo-rochester-ny.webp" type="image/webp" />
+<link rel="stylesheet" href="subpage.css"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -62,42 +63,6 @@
 }
 </script>
 <style>
-*,*::before,*::after{box-sizing:border-box;}
-
-body{
-  font-family:Inter,sans-serif;
-  margin:0;
-  color:#1a2744;
-  line-height:1.6;
-  background:white;
-}
-
-section{padding:4rem 8%;}
-a{color:#c0392b;}
-a:hover{color:#96281b;}
-
-/* Nav */
-.nav{
-  background:#1a1a1a;
-  padding:.9rem 8%;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.nav-brand{
-  color:white;
-  font-family:"Playfair Display",serif;
-  font-size:1.1rem;
-  text-decoration:none;
-  letter-spacing:.02em;
-}
-.nav-link{
-  color:#ccc;
-  text-decoration:none;
-  font-size:.9rem;
-}
-.nav-link:hover{color:white;}
-
 /* Page header */
 .page-header{
   background:#f7f8fb;
@@ -152,13 +117,6 @@ a:hover{color:#96281b;}
   margin:.5rem 0 .15rem;
 }
 
-/* Section alt */
-.section-alt{
-  background:#f7f8fb;
-  border-top:1px solid #d0d8e8;
-  border-bottom:1px solid #d0d8e8;
-}
-
 /* More photos grid */
 .photo-grid-wide{
   display:grid;
@@ -167,51 +125,14 @@ a:hover{color:#96281b;}
   margin-top:2rem;
 }
 
-/* CTA */
-.cta-section{
-  background:#1a2744;
-  color:white;
-  text-align:center;
-  padding:4rem 8%;
-}
-.cta-section h2{
-  font-family:"Playfair Display",serif;
-  font-size:2rem;
-  margin:0 0 .75rem;
-  color:white;
-}
-.cta-section p{
-  color:#b0bdd8;
-  max-width:500px;
-  margin:0 auto 1.5rem;
-}
-.cta-phone{
-  display:block;
-  font-size:2.2rem;
-  font-weight:600;
-  color:white;
-  text-decoration:none;
-  margin-bottom:.5rem;
-  letter-spacing:.02em;
-}
-.cta-phone:hover{color:#f0c040;}
-.cta-note{
-  font-size:.82rem;
-  color:#8090b8;
-  margin-top:.25rem;
-}
+/* Prose content block */
+.prose{max-width:660px;}
+.prose h2{font-family:"Playfair Display",serif;font-size:1.55rem;line-height:1.25;color:#1a2744;margin:0 0 1rem;}
+.prose p{color:#3d4f6e;font-size:.97rem;line-height:1.75;margin:0 0 1rem;}
+.prose p:last-child{margin-bottom:0;}
 
-/* Footer */
-.footer{
-  background:#1a1a1a;
-  color:white;
-  padding:2rem 8%;
-  text-align:center;
-  font-size:.85rem;
-  line-height:1.9;
-}
-.footer a{color:#aaa;}
-.footer a:hover{color:white;}
+/* Intro blurb in alt sections */
+.section-note{color:#6b7a99;font-size:.95rem;max-width:640px;margin:0 0 2rem;}
 
 /* Responsive */
 @media(max-width:900px){
@@ -294,12 +215,12 @@ a:hover{color:#96281b;}
 
 <!-- Why concrete holds up -->
 <section>
-  <div style="max-width:660px;">
-    <h2 style="font-family:'Playfair Display',serif;font-size:1.55rem;line-height:1.25;color:#1a2744;margin:0 0 1rem;">Why Stone Fails and Concrete Holds Up in Rochester</h2>
-    <p style="color:#3d4f6e;font-size:.97rem;line-height:1.75;margin:0 0 1rem;">
+  <div class="prose">
+    <h2>Why Stone Fails and Concrete Holds Up in Rochester</h2>
+    <p>
       Stone and cobblestone driveways fail in Rochester for one reason: the bedding underneath shifts. Over 30 freeze-thaw cycles a year work water into every crack and joint — it freezes, expands, and heaves the surface. Once it starts, you're patching individual stones indefinitely while water keeps finding its way toward the foundation.
     </p>
-    <p style="color:#3d4f6e;font-size:.97rem;line-height:1.75;margin:0;">
+    <p>
       This job was a full replacement. We demolished and removed the existing surface down to grade, compacted a gravel sub-base, set wire mesh reinforcement on chairs so it rides in the middle of the slab, and poured reinforced concrete. Control joints were cut throughout to control where the slab moves. The result is a surface that handles what Rochester winters throw at it — without the maintenance that stone requires.
     </p>
   </div>
@@ -307,9 +228,7 @@ a:hover{color:#96281b;}
 
 <!-- Additional project photos -->
 <section class="section-alt">
-  <p style="color:#6b7a99;font-size:.95rem;max-width:640px;margin:0 0 2rem;">
-    Additional photos from the project showing demo, base work, and the finished surface.
-  </p>
+  <p class="section-note">Additional photos from the project showing demo, base work, and the finished surface.</p>
   <div class="photo-grid-wide">
 
     <div class="photo-card">
