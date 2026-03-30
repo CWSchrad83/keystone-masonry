@@ -20,6 +20,10 @@ a:hover{color:#96281b;}
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:1rem;
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
 .nav-brand{
@@ -37,6 +41,28 @@ a:hover{color:#96281b;}
 }
 
 .nav-link:hover{color:white;}
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+}
+
+.nav-call{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:.65rem 1rem;
+  background:#c0392b;
+  color:white;
+  text-decoration:none;
+  font-size:.9rem;
+  font-weight:600;
+  border-radius:999px;
+  white-space:nowrap;
+}
+
+.nav-call:hover{background:#96281b;color:white;}
 
 /* ─── Trust bar ─────────────────────────────────────────────────── */
 .trust{
@@ -94,6 +120,14 @@ a:hover{color:#96281b;}
   color:#8090b8;
   margin-top:.25rem;
 }
+
+.email-note{
+  color:#6b7a99;
+  font-size:.86rem;
+  margin-top:.6rem;
+}
+
+.mobile-call-bar{display:none;}
 
 /* ─── Footer ────────────────────────────────────────────────────── */
 .footer{
@@ -160,6 +194,8 @@ a:hover{color:#96281b;}
   margin:0 0 2.5rem;
   font-size:.98rem;
 }
+
+#contact{scroll-margin-top:110px;}
 
 /* ─── Button ────────────────────────────────────────────────────── */
 .btn{
@@ -235,6 +271,11 @@ a:hover{color:#96281b;}
   .photo-grid{grid-template-columns:repeat(2,1fr);}
   .photo-grid-wide{grid-template-columns:repeat(2,1fr);}
   .photo-grid-2col{grid-template-columns:repeat(2,1fr);}
+  .nav{flex-wrap:wrap;}
+  .nav-actions{
+    width:100%;
+    justify-content:space-between;
+  }
 }
 
 @media(max-width:560px){
@@ -245,4 +286,30 @@ a:hover{color:#96281b;}
   .photo-grid{grid-template-columns:1fr;}
   .photo-grid-wide{grid-template-columns:1fr;}
   .photo-grid-2col{grid-template-columns:1fr;}
+  body{padding-bottom:5.5rem;}
+  .nav{padding:.85rem 6%;}
+  .nav-actions{gap:.75rem;}
+  .nav-call{display:none;}
+  .mobile-call-bar{
+    display:block;
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:1100;
+    padding:.8rem 6% calc(.8rem + env(safe-area-inset-bottom));
+    background:rgba(26,39,68,.98);
+    border-top:1px solid rgba(255,255,255,.12);
+    box-shadow:0 -10px 30px rgba(0,0,0,.18);
+  }
+  .mobile-call-bar a{
+    display:block;
+    padding:.95rem 1rem;
+    border-radius:999px;
+    background:#c0392b;
+    color:white;
+    text-align:center;
+    text-decoration:none;
+    font-weight:600;
+  }
 }
