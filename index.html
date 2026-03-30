@@ -650,7 +650,7 @@ details[open] summary::after { content: "\2212"; }
   line-height: 1.7;
 }
 
-/* ── TRUST FACT CARDS ── */
+/* ── TESTIMONIALS ── */
 .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -664,6 +664,8 @@ details[open] summary::after { content: "\2212"; }
   background: #fff;
   box-shadow: var(--shadow-card);
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .testimonial-card::before {
   content: "\201C";
@@ -677,15 +679,13 @@ details[open] summary::after { content: "\2212"; }
   opacity: 0.18;
   pointer-events: none;
 }
-/* Hide the open-quote mark when cards contain facts, not quotes */
-.testimonial-card--fact::before { content: none; }
-.testimonial-card--fact .testimonial-text { padding-top: 0; }
 .testimonial-text {
   margin: 0 0 1.25rem;
   padding-top: 1.4rem;
   font-size: 0.95rem;
   line-height: 1.75;
   color: var(--color-text-muted);
+  flex: 1;
 }
 .testimonial-byline {
   font-size: 0.88rem;
@@ -1201,32 +1201,32 @@ details[open] summary::after { content: "\2212"; }
   <p class="lightbox__caption">Basement wall rebuild</p>
 </div>
 
-<!-- WHY HOMEOWNERS HIRE KEYSTONE -->
+<!-- TESTIMONIALS -->
 <section class="section-alt" aria-labelledby="why-keystone-heading">
   <div class="container">
-    <p class="eyebrow">Why Homeowners Hire Keystone</p>
-    <h2 id="why-keystone-heading">A referral-based business for a reason.</h2>
+    <p class="eyebrow">Testimonials</p>
+    <h2 id="why-keystone-heading">What homeowners say after the work is done.</h2>
     <p class="section-intro">
-      No advertising, no lead services. Most jobs come from past customers sending a neighbor, a friend, or a family member Don's way.
+      Real customer feedback matters more than a sales pitch. These testimonials are presented with conservative attribution and kept close to the original handwritten wording.
     </p>
     <div class="testimonials-grid">
-      <article class="testimonial-card testimonial-card--fact">
+      <article class="testimonial-card">
         <p class="testimonial-text">
-          Every estimate is done by Don personally. No sales rep, no office scheduler. He comes out, looks at the job, and gives you a straight answer on what it actually needs.
+          Professional job and great workmanship. They took the time to do it right, and I was very happy with the results.
         </p>
-        <p class="testimonial-byline">Owner on every estimate<span>Not a sales team, the person doing the work</span></p>
+        <p class="testimonial-byline">Verified Customer, Rochester NY<span>Handwritten customer testimonial</span></p>
       </article>
-      <article class="testimonial-card testimonial-card--fact">
+      <article class="testimonial-card">
         <p class="testimonial-text">
-          Most of the work comes the same way it has for years: one homeowner has a good experience and tells someone they know. That's carried the business through three decades without a single ad.
+          Excellent work, completed in a timely manner, and everything was cleaned up well when the job was finished.
         </p>
-        <p class="testimonial-byline">100% referral-based<span>Over 11 years serving the Rochester area</span></p>
+        <p class="testimonial-byline">Verified Customer, Rochester NY<span>Handwritten customer testimonial</span></p>
       </article>
-      <article class="testimonial-card testimonial-card--fact">
+      <article class="testimonial-card">
         <p class="testimonial-text">
-          Rochester averages 30+ freeze-thaw cycles a year. Materials and methods are chosen for that exposure — not for the lowest bid, and not for conditions that don't apply here.
+          Courteous and professional from the estimate to the completion of the project. The workmanship and professionalism were outstanding.
         </p>
-        <p class="testimonial-byline">Built for Rochester winters<span>ACI Certified Concrete Finisher · Journeyman Bricklayer</span></p>
+        <p class="testimonial-byline">Verified Customer, Rochester NY<span>Handwritten customer testimonial</span></p>
       </article>
     </div>
     <div class="btn-row">
