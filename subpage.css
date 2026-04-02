@@ -27,11 +27,19 @@ a:hover{color:#96281b;}
 }
 
 .nav-brand{
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
   color:white;
   font-family:"Playfair Display",serif;
   font-size:1.1rem;
   text-decoration:none;
   letter-spacing:.02em;
+}
+.nav-logo{
+  width:28px;
+  height:28px;
+  flex-shrink:0;
 }
 
 .nav-link{
