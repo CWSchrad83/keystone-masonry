@@ -234,6 +234,11 @@ h2 {
   padding: 4.5rem 8%;
 }
 .hero__content-inner { width: min(100%, 620px); }
+.hero__logo {
+  max-width: 320px;
+  height: auto;
+  margin-bottom: 1rem;
+}
 .hero__title {
   margin: 0.7rem 0 1.1rem;
   font-family: var(--font-heading);
@@ -833,6 +838,7 @@ details[open] summary::after { content: "\2212"; }
     min-height: auto;
   }
   .hero__content { padding: 3.5rem 6% 2.5rem; }
+  .hero__logo { max-width: 240px; }
   .hero__title { font-size: clamp(2.4rem, 10vw, 3.2rem); }
   .hero__photos {
     grid-template-columns: 1fr 1fr;
@@ -884,7 +890,7 @@ details[open] summary::after { content: "\2212"; }
 <section class="hero" aria-label="Hero">
   <div class="hero__content">
     <div class="hero__content-inner">
-      <p class="eyebrow">Rochester NY Masonry Contractor</p>
+      <img class="hero__logo" src="images/logo-keystone-masonry.png" alt="Keystone Masonry &amp; Construction Services — ACI Certified" width="400" height="179" />
       <h1 class="hero__title">First-Class Masonry Work<br />in Rochester NY. Built to Last.</h1>
       <p class="hero__subtitle">
         Patios, walkways, chimney repair, brick and stone work, and structural masonry
