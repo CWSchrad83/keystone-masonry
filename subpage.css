@@ -15,7 +15,7 @@ a:hover{color:#96281b;}
 
 /* ─── Nav ───────────────────────────────────────────────────────── */
 .nav{
-  background:#1a1a1a;
+  background:#1a2744;
   padding:.9rem 8%;
   display:flex;
   align-items:center;
@@ -35,7 +35,7 @@ a:hover{color:#96281b;}
 }
 
 .nav-link{
-  color:#ccc;
+  color:#a89e88;
   text-decoration:none;
   font-size:.9rem;
 }
@@ -66,20 +66,20 @@ a:hover{color:#96281b;}
 
 /* ─── Trust bar ─────────────────────────────────────────────────── */
 .trust{
-  background:#f7f8fb;
-  border-top:1px solid #d0d8e8;
-  border-bottom:1px solid #d0d8e8;
+  background:#f8f5ee;
+  border-top:1px solid #d5cebb;
+  border-bottom:1px solid #d5cebb;
   text-align:center;
   padding:.9rem 1rem;
   font-size:.85rem;
-  color:#6b7a99;
+  color:#6b7060;
 }
 
 /* ─── Alt section ───────────────────────────────────────────────── */
 .section-alt{
-  background:#f7f8fb;
-  border-top:1px solid #d0d8e8;
-  border-bottom:1px solid #d0d8e8;
+  background:#f8f5ee;
+  border-top:1px solid #d5cebb;
+  border-bottom:1px solid #d5cebb;
 }
 
 /* ─── CTA section ───────────────────────────────────────────────── */
@@ -98,7 +98,7 @@ a:hover{color:#96281b;}
 }
 
 .cta-section p{
-  color:#b0bdd8;
+  color:#a89e88;
   max-width:520px;
   margin:0 auto 1.5rem;
 }
@@ -113,16 +113,16 @@ a:hover{color:#96281b;}
   letter-spacing:.02em;
 }
 
-.cta-phone:hover{color:#f0c040;}
+.cta-phone:hover{color:#c4b896;}
 
 .cta-note{
   font-size:.82rem;
-  color:#8090b8;
+  color:#8a8472;
   margin-top:.25rem;
 }
 
 .email-note{
-  color:#6b7a99;
+  color:#8a8472;
   font-size:.86rem;
   margin-top:.6rem;
 }
@@ -131,21 +131,21 @@ a:hover{color:#96281b;}
 
 /* ─── Footer ────────────────────────────────────────────────────── */
 .footer{
-  background:#1a1a1a;
-  color:white;
+  background:#1a2744;
+  color:#c9c0a8;
   padding:2rem 8%;
   text-align:center;
   font-size:.85rem;
   line-height:1.9;
 }
 
-.footer a{color:#aaa;}
+.footer a{color:#a89e88;}
 .footer a:hover{color:white;}
 
 /* ─── Page header (subpages) ────────────────────────────────────── */
 .page-header{
-  background:#f7f8fb;
-  border-bottom:1px solid #d0d8e8;
+  background:#f8f5ee;
+  border-bottom:1px solid #d5cebb;
   padding:4rem 8% 3rem;
 }
 
@@ -153,7 +153,7 @@ a:hover{color:#96281b;}
   text-transform:uppercase;
   letter-spacing:.12em;
   font-size:.75rem;
-  color:#6b7a99;
+  color:#6b7060;
   margin:0 0 .5rem;
 }
 
@@ -167,7 +167,7 @@ a:hover{color:#96281b;}
 
 .page-intro{
   max-width:640px;
-  color:#6b7a99;
+  color:#6b7060;
   font-size:.98rem;
   margin:0;
 }
@@ -177,7 +177,7 @@ a:hover{color:#96281b;}
   text-transform:uppercase;
   letter-spacing:.12em;
   font-size:.75rem;
-  color:#6b7a99;
+  color:#6b7060;
   margin:0 0 .4rem;
 }
 
@@ -190,7 +190,7 @@ a:hover{color:#96281b;}
 
 .section-intro{
   max-width:680px;
-  color:#6b7a99;
+  color:#6b7060;
   margin:0 0 2.5rem;
   font-size:.98rem;
 }
@@ -241,7 +241,7 @@ a:hover{color:#96281b;}
 
 .photo-label{
   font-size:.83rem;
-  color:#6b7a99;
+  color:#6b7060;
   margin:.5rem 0 0;
   line-height:1.4;
 }
@@ -298,7 +298,7 @@ a:hover{color:#96281b;}
     bottom:0;
     z-index:1100;
     padding:.8rem 6% calc(.8rem + env(safe-area-inset-bottom));
-    background:rgba(26,39,68,.98);
+    background:rgba(26,39,68,.97);
     border-top:1px solid rgba(255,255,255,.12);
     box-shadow:0 -10px 30px rgba(0,0,0,.18);
   }
