@@ -579,6 +579,51 @@ h2 {
   font-size: 0.93rem;
   color: var(--color-text-muted);
 }
+.quote-form {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+.quote-form h3 {
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+}
+.quote-form label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+.quote-form input,
+.quote-form textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.9rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  background: #fff;
+}
+.quote-form input:focus,
+.quote-form textarea:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+  border-color: var(--color-accent);
+}
+.quote-form .btn { width: 100%; justify-content: center; cursor: pointer; border: none; }
+.quote-form-success {
+  padding: 1rem;
+  border-radius: 8px;
+  background: rgba(61, 139, 55, 0.08);
+  border: 1px solid rgba(61, 139, 55, 0.2);
+  color: #2d6e28;
+  font-weight: 500;
+  text-align: center;
+}
 
 /* ── FAQ ── */
 .faq-section {
@@ -805,8 +850,7 @@ details[open] summary::after { content: "\2212"; }
 
 /* ── FOOTER ── */
 .footer {
-  padding: 2.2rem 1.5rem;
-  text-align: center;
+  padding: 3rem 8% 1.5rem;
   font-size: 0.88rem;
   color: var(--color-footer-text);
   background: var(--color-footer);
@@ -814,7 +858,32 @@ details[open] summary::after { content: "\2212"; }
 .footer p { margin: 0.3rem 0; }
 .footer a { color: var(--color-footer-link); text-decoration: none; }
 .footer a:hover { color: #fff; }
-.footer__muted { color: var(--color-footer-muted); }
+.footer__inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: var(--container-width);
+  margin: 0 auto 2rem;
+}
+.footer__col { line-height: 1.7; }
+.footer__brand {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+.footer__heading {
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+.footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.2rem;
+  text-align: center;
+  color: var(--color-footer-muted);
+}
 
 /* ── MOBILE CALL BAR ── */
 .mobile-call-bar { display: none; }
@@ -867,6 +936,8 @@ details[open] summary::after { content: "\2212"; }
     font-weight: 700;
   }
   body { padding-bottom: 72px; }
+  .footer { padding: 2.5rem 6% 1.5rem; }
+  .footer__inner { grid-template-columns: 1fr; gap: 1.5rem; }
 }
 </style>
 </head>
@@ -1351,6 +1422,16 @@ details[open] summary::after { content: "\2212"; }
         <a class="btn" href="tel:+15854901600">Call Now</a>
         <a class="btn btn--secondary" href="mailto:don@stonemasonryny.com">Send an Email</a>
       </div>
+      <form class="quote-form" id="quote-form" aria-label="Request a free estimate">
+        <h3>Or send a quick message</h3>
+        <label for="qf-name">Name</label>
+        <input type="text" id="qf-name" name="name" required autocomplete="name" />
+        <label for="qf-phone">Phone</label>
+        <input type="tel" id="qf-phone" name="phone" autocomplete="tel" />
+        <label for="qf-message">What do you need done?</label>
+        <textarea id="qf-message" name="message" rows="3" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
     </div>
     <aside class="service-area-card">
       <h3>Service area</h3>
@@ -1360,6 +1441,9 @@ details[open] summary::after { content: "\2212"; }
         Geneva, Newark, and surrounding communities across Monroe County, Ontario County,
         and Wayne County.
       </p>
+      <div class="map-embed">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d186245.27692898943!2d-77.78!3d43.16!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d6b3059614b353%3A0x5a001ffc4125e61e!2sRochester%2C%20NY!5e0!3m2!1sen!2sus!4v1" width="100%" height="220" style="border:0;border-radius:12px;margin-top:1.25rem;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Keystone Masonry service area — Rochester NY"></iframe>
+      </div>
     </aside>
   </div>
 </section>
@@ -1402,9 +1486,28 @@ details[open] summary::after { content: "\2212"; }
 
 <!-- FOOTER -->
 <footer class="footer">
-  <p>&copy; <span id="current-year"></span> Keystone Masonry &amp; Construction &nbsp;&bull;&nbsp; Rochester NY &nbsp;&bull;&nbsp; <a href="tel:+15854901600">585-490-1600</a></p>
-  <p><a href="chimney-repair-rochester-ny.html">Chimney Repair</a> &nbsp;&bull;&nbsp; <a href="projects-rochester-ny.html">Project Photos</a> &nbsp;&bull;&nbsp; <a href="driveway-restoration-rochester-ny.html">Driveway Restoration</a></p>
-  <p class="footer__muted">Serving Monroe County, Ontario County, and Wayne County</p>
+  <div class="footer__inner">
+    <div class="footer__col">
+      <p class="footer__brand">Keystone Masonry &amp; Construction</p>
+      <p>1084 Lakeshore Blvd.<br />Rochester, NY 14617</p>
+      <p><a href="tel:+15854901600">585-490-1600</a><br /><a href="mailto:don@stonemasonryny.com">don@stonemasonryny.com</a></p>
+    </div>
+    <div class="footer__col">
+      <p class="footer__heading">Pages</p>
+      <p><a href="index.html">Home</a><br />
+      <a href="projects-rochester-ny.html">Project Photos</a><br />
+      <a href="chimney-repair-rochester-ny.html">Chimney Repair</a><br />
+      <a href="driveway-restoration-rochester-ny.html">Driveway Restoration</a></p>
+    </div>
+    <div class="footer__col">
+      <p class="footer__heading">Service Area</p>
+      <p>Rochester, Greece, Irondequoit, Webster, Penfield, Pittsford, Victor, Brighton, Henrietta, Fairport, Canandaigua &amp; surrounding towns</p>
+      <p>Monroe County &nbsp;&bull;&nbsp; Ontario County &nbsp;&bull;&nbsp; Wayne County</p>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <p>&copy; <span id="current-year"></span> Keystone Masonry &amp; Construction &nbsp;&bull;&nbsp; ACI Certified Concrete Finisher &nbsp;&bull;&nbsp; Journeyman Bricklayer</p>
+  </div>
 </footer>
 
 <!-- MOBILE CALL BAR (fixed bottom on small screens) -->

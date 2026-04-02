@@ -48,9 +48,38 @@
     });
   }
 
+  function bindQuoteForm() {
+    const form = document.getElementById("quote-form");
+    if (!form) return;
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = form.querySelector("#qf-name").value.trim();
+      const phone = form.querySelector("#qf-phone").value.trim();
+      const message = form.querySelector("#qf-message").value.trim();
+
+      const subject = encodeURIComponent("Estimate request from " + name);
+      const body = encodeURIComponent(
+        "Name: " + name +
+        "\nPhone: " + (phone || "Not provided") +
+        "\n\n" + message
+      );
+
+      window.location.href = "mailto:don@stonemasonryny.com?subject=" + subject + "&body=" + body;
+
+      window.gtag("event", "quote_form_submit", {
+        event_category: "engagement",
+        event_label: name
+      });
+
+      form.innerHTML = '<p class="quote-form-success">Message ready to send — your email app should open now.</p>';
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     setCurrentYear();
     initAnalytics();
     bindPhoneTracking();
+    bindQuoteForm();
   });
 })();
