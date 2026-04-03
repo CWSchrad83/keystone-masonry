@@ -10,14 +10,14 @@ const siteJs = fs.readFileSync(path.join(root, "site.js"), "utf8");
 test("quote form has a non-JS submission path", () => {
   assert.match(
     indexHtml,
-    /<form class="quote-form" id="quote-form" aria-label="Request a free estimate" action="mailto:don@stonemasonryny\.com" method="post" enctype="text\/plain">/
+    /<form class="quote-form[\s\S]*id="quote-form" aria-label="Request a free estimate" action="mailto:don@stonemasonryny\.com" method="post" enctype="text\/plain">/
   );
-  assert.match(indexHtml, /<p class="quote-form-help" id="qf-help">/);
+  assert.match(indexHtml, /<p class="quote-form-help[\s\S]*id="qf-help">/);
   assert.match(indexHtml, /id="qf-phone" name="phone" autocomplete="tel" inputmode="tel"/);
   assert.match(indexHtml, /id="qf-feedback" role="status" aria-live="polite"/);
   assert.match(
     indexHtml,
-    /<p class="email-note">Submitting opens your email app with the message filled in so you can review it before sending\.<\/p>/
+    /<p class="email-note[\s\S]*Submitting opens your email app with the message filled in so you can review it before sending\.<\/p>/
   );
 });
 
@@ -47,12 +47,13 @@ test("accessibility helpers include skip link and lightbox keyboard hooks", () =
   assert.match(siteJs, /if \(e\.key !== "Escape"\) return;/);
 });
 
-test("homepage preloads the lighter hero logo and includes intrinsic hero image sizes", () => {
-  assert.match(indexHtml, /<link rel="preload" as="image" href="images\/base-logo\.png" type="image\/png" \/>/);
-  assert.doesNotMatch(indexHtml, /<link rel="preload" as="image" href="images\/front-walkway\.webp"/);
-  assert.match(indexHtml, /<img class="hero__logo" src="images\/base-logo\.png"[^>]*fetchpriority="high"[^>]*decoding="async"/);
-  assert.match(indexHtml, /<img\s+src="images\/front-walkway\.jpg"[\s\S]*width="1200"[\s\S]*height="1600"/);
-  assert.match(indexHtml, /<img\s+src="images\/chimney-rebuild\.jpg"[\s\S]*width="1200"[\s\S]*height="676"/);
+test("homepage uses the Tailwind hero and keeps intrinsic image sizes", () => {
+  assert.match(indexHtml, /<script src="https:\/\/cdn\.jsdelivr\.net\/npm\/@tailwindcss\/browser@4"><\/script>/);
+  assert.match(indexHtml, /<link rel="preload" as="image" href="images\/chimney-rebuild\.webp" type="image\/webp" \/>/);
+  assert.match(indexHtml, /<section id="home" class="hero[\s\S]*Call Don for a Free On-Site Estimate/);
+  assert.match(indexHtml, /<img src="images\/chimney-rebuild\.jpg"[^>]*fetchpriority="high"[^>]*decoding="async"[^>]*width="1200"[^>]*height="676"/);
+  assert.match(indexHtml, /<section id="gallery"[\s\S]*id="gallery-photos"/);
+  assert.match(indexHtml, /<img src="images\/front-walkway\.jpg"[^>]*width="900"[^>]*height="1200"/);
 });
 
 test("analytics-only listeners are skipped when GA is not configured", () => {
