@@ -266,7 +266,7 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
 }
 
 .header-link{
-  color:#c0392b;
+  color:var(--color-accent);
   font-weight:500;
   text-decoration:none;
 }
