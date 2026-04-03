@@ -29,7 +29,7 @@ a:hover{color:#96281b;}
 .nav-brand{
   display:inline-flex;
   align-items:center;
-  gap:0;
+  gap:.55rem;
   color:white;
   font-family:"Playfair Display",serif;
   font-size:1.1rem;
@@ -37,10 +37,9 @@ a:hover{color:#96281b;}
   letter-spacing:.02em;
 }
 .nav-logo{
-  width:auto;
-  height:44px;
+  width:28px;
+  height:28px;
   flex-shrink:0;
-  display:block;
 }
 
 .nav-link{
@@ -267,7 +266,8 @@ a:hover{color:#96281b;}
 
 .photo-card img{
   width:100%;
-  height:auto;
+  aspect-ratio:4/3;
+  object-fit:cover;
   display:block;
 }
 
