@@ -291,7 +291,7 @@ a:hover{color:#96281b;}
 /* ─── Prose ─────────────────────────────────────────────────────── */
 .prose{max-width:660px;}
 .prose h2{font-family:"Playfair Display",serif;font-size:1.55rem;line-height:1.25;color:#4f2f25;margin:0 0 1rem;}
-.prose p{color:#3d4f6e;font-size:.97rem;line-height:1.75;margin:0 0 1rem;}
+.prose p{color:#746c61;font-size:.97rem;line-height:1.75;margin:0 0 1rem;}
 .prose p:last-child{margin-bottom:0;}
 
 /* ─── Link accent ───────────────────────────────────────────────── */
@@ -335,7 +335,7 @@ a:hover{color:#96281b;}
     bottom:0;
     z-index:1100;
     padding:.8rem 6% calc(.8rem + env(safe-area-inset-bottom));
-    background:rgba(26,39,68,.97);
+    background:rgba(111,47,34,.97);
     border-top:1px solid rgba(255,255,255,.12);
     box-shadow:0 -10px 30px rgba(0,0,0,.18);
   }
