@@ -4,7 +4,7 @@
 body{
   font-family:Inter,sans-serif;
   margin:0;
-  color:#0b355f;
+  color:#4f2f25;
   line-height:1.6;
   background:white;
 }
@@ -15,7 +15,7 @@ a:hover{color:#96281b;}
 
 /* ─── Nav ───────────────────────────────────────────────────────── */
 .nav{
-  background:#0b355f;
+  background:#6f2f22;
   padding:.9rem 8%;
   display:flex;
   align-items:center;
@@ -29,7 +29,7 @@ a:hover{color:#96281b;}
 .nav-brand{
   display:inline-flex;
   align-items:center;
-  gap:.55rem;
+  gap:0;
   color:white;
   font-family:"Playfair Display",serif;
   font-size:1.1rem;
@@ -37,9 +37,10 @@ a:hover{color:#96281b;}
   letter-spacing:.02em;
 }
 .nav-logo{
-  width:28px;
-  height:28px;
+  width:auto;
+  height:44px;
   flex-shrink:0;
+  display:block;
 }
 
 .nav-link{
@@ -92,7 +93,7 @@ a:hover{color:#96281b;}
 
 /* ─── CTA section ───────────────────────────────────────────────── */
 .cta-section{
-  background:#0b355f;
+  background:#6f2f22;
   color:white;
   text-align:center;
   padding:4rem 8%;
@@ -147,8 +148,8 @@ a:hover{color:#96281b;}
 
 /* ─── Footer ────────────────────────────────────────────────────── */
 .footer{
-  background:#0b355f;
-  color:#c8b99c;
+  background:#6f2f22;
+  color:#dcc3a7;
   padding:2rem 8%;
   text-align:center;
   font-size:.85rem;
@@ -178,7 +179,7 @@ a:hover{color:#96281b;}
   font-size:2.6rem;
   line-height:1.2;
   margin:0 0 1rem;
-  color:#0b355f;
+  color:#4f2f25;
 }
 
 .page-intro{
@@ -217,7 +218,7 @@ a:hover{color:#96281b;}
   font-family:"Playfair Display",serif;
   font-size:2rem;
   margin:0 0 1rem;
-  color:#0b355f;
+  color:#4f2f25;
 }
 
 .section-intro{
@@ -289,7 +290,7 @@ a:hover{color:#96281b;}
 
 /* ─── Prose ─────────────────────────────────────────────────────── */
 .prose{max-width:660px;}
-.prose h2{font-family:"Playfair Display",serif;font-size:1.55rem;line-height:1.25;color:#0b355f;margin:0 0 1rem;}
+.prose h2{font-family:"Playfair Display",serif;font-size:1.55rem;line-height:1.25;color:#4f2f25;margin:0 0 1rem;}
 .prose p{color:#3d4f6e;font-size:.97rem;line-height:1.75;margin:0 0 1rem;}
 .prose p:last-child{margin-bottom:0;}
 
