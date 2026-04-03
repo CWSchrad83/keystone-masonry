@@ -51,7 +51,7 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
 
 /* ─── Nav ───────────────────────────────────────────────────────── */
 .nav{
-  background:var(--color-text);
+  background:var(--color-accent);
   padding:.9rem 8%;
   display:flex;
   align-items:center;
@@ -79,7 +79,7 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
 }
 
 .nav-link{
-  color:#a89a80;
+  color:rgba(255,255,255,.85);
   text-decoration:none;
   font-size:.9rem;
   line-height:1.4;
@@ -99,19 +99,18 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
   justify-content:center;
   min-height:46px;
   padding:.7rem 1.1rem;
-  background:var(--color-accent);
-  color:white;
+  background:#fff;
+  color:var(--color-accent);
   text-decoration:none;
   font-size:.9rem;
   font-weight:600;
   border-radius:var(--radius);
   white-space:nowrap;
-  box-shadow:0 10px 20px rgba(192,57,43,.14);
 }
 
 .nav-call:hover{
-  background:var(--color-accent-hover);
-  color:white;
+  background:rgba(255,255,255,.85);
+  color:var(--color-accent);
   transform:translateY(-1px);
 }
 
