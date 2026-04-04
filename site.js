@@ -382,6 +382,7 @@
       }).catch(() => {
         setFeedback("Network error — call 585-490-1600 or email don@stonemasonryny.com instead.", "error");
       }).finally(() => {
+        window.clearTimeout(submitLockTimer);
         if (submitButton) {
           submitButton.disabled = false;
           submitButton.textContent = "Send Message";
