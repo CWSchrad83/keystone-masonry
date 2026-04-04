@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.keystonemasonryny.com/sitemap.xml
+Sitemap: https://cwschrad83.github.io/keystone-masonry/sitemap.xml
