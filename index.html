@@ -565,7 +565,7 @@ h2 {
 }
 .gallery-thumb img {
   width: 100%;
-  height: auto;
+  height: auto; /* required: overrides HTML height attr so aspect-ratio works */
   aspect-ratio: 3 / 2;
   object-fit: cover;
   object-position: center;
@@ -1056,7 +1056,7 @@ details[open] summary::after { content: "\2212"; }
     min-height: auto;
   }
   .hero__content { padding: 3.5rem 6% 2.5rem; }
-  .hero__logo { max-width: 82vw; }
+  .hero__logo { max-width: min(82vw, 420px); }
   .hero__title { font-size: clamp(2.4rem, 10vw, 3.2rem); }
   .hero__proof { gap: 0.8rem; }
   .hero__photos {
