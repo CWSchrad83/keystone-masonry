@@ -565,10 +565,13 @@ h2 {
 .gallery-thumb img {
   width: 100%;
   height: auto;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
+  object-position: center;
   display: block;
 }
+.gallery-thumb img[data-crop="top"]    { object-position: center 20%; }
+.gallery-thumb img[data-crop="bottom"] { object-position: center 80%; }
 .gallery-thumb-label {
   display: block;
   padding: 0.55rem 0.9rem 0.65rem;
@@ -1314,13 +1317,13 @@ details[open] summary::after { content: "\2212"; }
 
       <a href="#lb-fw" class="gallery-thumb" data-lightbox="open" data-photo="Front walkway">
         <picture><source srcset="images/front-walkway.webp" type="image/webp" />
-        <img src="images/front-walkway.jpg" alt="Stamped concrete front walkway in Rochester NY" loading="lazy" width="900" height="1200" /></picture>
+        <img src="images/front-walkway.jpg" alt="Stamped concrete front walkway in Rochester NY" loading="lazy" width="900" height="1200" data-crop="bottom" /></picture>
         <span class="gallery-thumb-label">Front walkway</span>
       </a>
 
       <a href="#lb-cr" class="gallery-thumb" data-lightbox="open" data-photo="Chimney rebuild">
         <picture><source srcset="images/chimney-rebuild.webp" type="image/webp" />
-        <img src="images/chimney-rebuild.jpg" alt="Full brick chimney rebuild in Rochester NY" loading="lazy" width="1200" height="676" /></picture>
+        <img src="images/chimney-rebuild.jpg" alt="Full brick chimney rebuild in Rochester NY" loading="lazy" width="1200" height="676" data-crop="top" /></picture>
         <span class="gallery-thumb-label">Chimney rebuild</span>
       </a>
 
