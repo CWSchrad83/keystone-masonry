@@ -40,6 +40,8 @@
   // ── CLICK-TO-CALL TRACKING ──
 
   function bindPhoneTracking() {
+    if (!hasRealGaId) return;
+
     document.addEventListener("click", (e) => {
       const link = closestHref(e.target, "tel:");
       if (!link) return;
@@ -64,6 +66,8 @@
   // ── OUTBOUND / EMAIL / MAPS CLICK TRACKING ──
 
   function bindOutboundTracking() {
+    if (!hasRealGaId) return;
+
     document.addEventListener("click", (e) => {
       const link = e.target.closest("a[href]");
       if (!link) return;
@@ -101,6 +105,8 @@
   // ── SCROLL DEPTH TRACKING (service pages only) ──
 
   function bindScrollDepth() {
+    if (!hasRealGaId) return;
+
     // Only track on pages with substantial content (service/project pages)
     const isServicePage = /chimney|driveway|projects/.test(window.location.pathname);
     if (!isServicePage) return;
@@ -140,6 +146,8 @@
   //   data-lightbox="close" on the close button
 
   function bindGalleryTracking() {
+    if (!hasRealGaId) return;
+
     document.addEventListener("click", (e) => {
       // Photo card clicks (project galleries)
       const card = e.target.closest(".photo-card");
@@ -179,9 +187,60 @@
     });
   }
 
+  function bindLightboxAccessibility() {
+    const galleryRoot = document.getElementById("gallery-photos");
+    if (!galleryRoot) return;
+
+    let lastTrigger = null;
+
+    function getActiveLightbox() {
+      const hash = window.location.hash;
+      if (!hash) return null;
+      const target = document.querySelector(hash);
+      return target && target.classList.contains("lightbox") ? target : null;
+    }
+
+    function focusForHashChange() {
+      const active = getActiveLightbox();
+      if (active) {
+        const closeLink = active.querySelector(".lightbox__close");
+        if (closeLink) {
+          closeLink.focus();
+        }
+        return;
+      }
+
+      if (lastTrigger && document.contains(lastTrigger)) {
+        lastTrigger.focus();
+      }
+    }
+
+    document.addEventListener("click", (e) => {
+      const trigger = e.target.closest(".gallery-thumb[data-lightbox='open']");
+      if (trigger) {
+        lastTrigger = trigger;
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape") return;
+      const active = getActiveLightbox();
+      if (!active) return;
+
+      e.preventDefault();
+      window.location.hash = "gallery-photos";
+    });
+
+    window.addEventListener("hashchange", () => {
+      window.requestAnimationFrame(focusForHashChange);
+    });
+  }
+
   // ── FAQ TOGGLE TRACKING ──
 
   function bindFaqTracking() {
+    if (!hasRealGaId) return;
+
     document.querySelectorAll("details summary").forEach((summary) => {
       summary.addEventListener("click", () => {
         const details = summary.closest("details");
@@ -198,50 +257,110 @@
   // ── CONTACT FORM TRACKING ──
   // Works with the existing #quote-form.
   // Expected HTML: form#quote-form with inputs #qf-name, #qf-phone, #qf-message.
-  // For a future dedicated form, use: form[data-track-form] with any inputs.
+  // Submission is handled by the form action so it still works without JS.
 
   function bindQuoteForm() {
     const form = document.getElementById("quote-form");
     if (!form) return;
+    const submitButton = form.querySelector("button[type='submit']");
+    const feedback = form.querySelector("#qf-feedback");
+    const fields = Array.from(form.querySelectorAll("input, textarea"));
 
     let formStarted = false;
+    let submitLockTimer = null;
+
+    function setFeedback(message, state) {
+      if (!feedback) return;
+      feedback.textContent = message || "";
+      if (state) {
+        feedback.setAttribute("data-state", state);
+      } else {
+        feedback.removeAttribute("data-state");
+      }
+    }
+
+    function setFieldValidity(field) {
+      if (!field) return;
+
+      field.setCustomValidity("");
+
+      if (field.validity.valueMissing) {
+        if (field.id === "qf-name") {
+          field.setCustomValidity("Please enter your name so Don knows who to reply to.");
+        } else if (field.id === "qf-message") {
+          field.setCustomValidity("Please add a short description of the repair or project.");
+        }
+      }
+
+      field.setAttribute("aria-invalid", field.checkValidity() ? "false" : "true");
+    }
+
+    function lockSubmit() {
+      if (!submitButton) return;
+      submitButton.disabled = true;
+      submitButton.textContent = "Opening Email App...";
+      form.setAttribute("aria-busy", "true");
+
+      window.clearTimeout(submitLockTimer);
+      submitLockTimer = window.setTimeout(() => {
+        submitButton.disabled = false;
+        submitButton.textContent = "Send Message";
+        form.removeAttribute("aria-busy");
+      }, 4000);
+    }
+
+    fields.forEach((field) => {
+      field.addEventListener("input", () => {
+        setFieldValidity(field);
+        setFeedback("");
+      });
+    });
+
+    form.addEventListener("invalid", (e) => {
+      const field = e.target;
+      if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement)) return;
+
+      setFieldValidity(field);
+      setFeedback("Please fix the highlighted field and try again.", "error");
+      if (!hasRealGaId) return;
+      sendEvent("form_submit_invalid", {
+        event_category: "engagement",
+        event_label: field.name || field.id || "quote_form"
+      });
+    }, true);
 
     // form_start: first interaction with any field
     form.addEventListener("focusin", () => {
       if (formStarted) return;
       formStarted = true;
+      if (!hasRealGaId) return;
       sendEvent("form_start", {
         event_category: "engagement",
         event_label: "quote_form"
       });
     });
 
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
+    form.addEventListener("submit", () => {
       const name = form.querySelector("#qf-name").value.trim();
-      const phone = form.querySelector("#qf-phone").value.trim();
-      const message = form.querySelector("#qf-message").value.trim();
 
-      // GA4 events
-      sendEvent("form_submit", {
-        event_category: "engagement",
-        event_label: "quote_form"
-      });
-      sendEvent("generate_lead", {
-        event_category: "engagement",
-        event_label: name
-      });
+      if (hasRealGaId) {
+        // GA4 events
+        sendEvent("form_submit", {
+          event_category: "engagement",
+          event_label: "quote_form"
+        });
+        sendEvent("generate_lead", {
+          event_category: "engagement",
+          event_label: name
+        });
+        sendEvent("form_mailto_handoff", {
+          event_category: "engagement",
+          event_label: "quote_form"
+        });
+      }
 
-      // Open email client with pre-filled message
-      const subject = encodeURIComponent("Estimate request from " + name);
-      const body = encodeURIComponent(
-        "Name: " + name +
-        "\nPhone: " + (phone || "Not provided") +
-        "\n\n" + message
-      );
-      window.location.href = "mailto:don@stonemasonryny.com?subject=" + subject + "&body=" + body;
-
-      form.innerHTML = '<p class="quote-form-success">Message ready to send — your email app should open now.</p>';
+      setFeedback("Your email app should open with the message filled in. If it does not, call 585-490-1600 or email don@stonemasonryny.com.", "info");
+      lockSubmit();
     });
   }
 
@@ -262,6 +381,7 @@
     bindOutboundTracking();
     bindScrollDepth();
     bindGalleryTracking();
+    bindLightboxAccessibility();
     bindFaqTracking();
     bindQuoteForm();
   });
