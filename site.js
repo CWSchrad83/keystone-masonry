@@ -223,12 +223,28 @@
     });
 
     document.addEventListener("keydown", (e) => {
-      if (e.key !== "Escape") return;
       const active = getActiveLightbox();
       if (!active) return;
 
-      e.preventDefault();
-      window.location.hash = "gallery-photos";
+      // Escape to close
+      if (e.key === "Escape") {
+        e.preventDefault();
+        window.location.hash = "gallery-photos";
+        return;
+      }
+
+      // Focus trap: keep Tab within the lightbox
+      if (e.key === "Tab") {
+        const focusable = active.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])');
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+        } else {
+          if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      }
     });
 
     window.addEventListener("hashchange", () => {
@@ -298,7 +314,7 @@
     function lockSubmit() {
       if (!submitButton) return;
       submitButton.disabled = true;
-      submitButton.textContent = "Opening Email App...";
+      submitButton.textContent = "Sending...";
       form.setAttribute("aria-busy", "true");
 
       window.clearTimeout(submitLockTimer);
@@ -340,27 +356,38 @@
       });
     });
 
-    form.addEventListener("submit", () => {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
       const name = form.querySelector("#qf-name").value.trim();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
 
-      if (hasRealGaId) {
-        // GA4 events
-        sendEvent("form_submit", {
-          event_category: "engagement",
-          event_label: "quote_form"
-        });
-        sendEvent("generate_lead", {
-          event_category: "engagement",
-          event_label: name
-        });
-        sendEvent("form_mailto_handoff", {
-          event_category: "engagement",
-          event_label: "quote_form"
-        });
-      }
-
-      setFeedback("Your email app should open with the message filled in. If it does not, call 585-490-1600 or email don@stonemasonryny.com.", "info");
       lockSubmit();
+
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { "Accept": "application/json" }
+      }).then((res) => {
+        if (res.ok) {
+          setFeedback("Message sent — Don will get back to you soon.", "success");
+          form.reset();
+          if (hasRealGaId) {
+            sendEvent("form_submit", { event_category: "engagement", event_label: "quote_form" });
+            sendEvent("generate_lead", { event_category: "engagement", event_label: name });
+          }
+        } else {
+          setFeedback("Something went wrong. Call 585-490-1600 or email don@stonemasonryny.com.", "error");
+        }
+      }).catch(() => {
+        setFeedback("Network error — call 585-490-1600 or email don@stonemasonryny.com instead.", "error");
+      }).finally(() => {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = "Send Message";
+          form.removeAttribute("aria-busy");
+        }
+      });
     });
   }
 

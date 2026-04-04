@@ -136,11 +136,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet" />
-<link rel="preload" as="image" href="images/logo-keystone-masonry.png" type="image/png" />
+<link rel="preload" as="image" href="images/logo-keystone-masonry.webp" type="image/webp" />
 <style>
 :root {
   --color-text: #0b355f;
-  --color-text-muted: #746c61;
+  --color-text-muted: #5c554b;
   --color-accent: #b8382d;
   --color-accent-hover: #992f26;
   --color-stone: #c8b99c;
@@ -149,8 +149,8 @@
   --color-surface-tint: #f0ebe1;
   --color-footer: #0b355f;
   --color-footer-text: #c8b99c;
-  --color-footer-link: #a89a80;
-  --color-footer-muted: #746c61;
+  --color-footer-link: #c4b99e;
+  --color-footer-muted: #5c554b;
   --shadow-card: 0 8px 24px rgba(11, 53, 95, 0.05);
   --shadow-card-hover: 0 16px 36px rgba(11, 53, 95, 0.1);
   --font-body: Inter, sans-serif;
@@ -472,7 +472,7 @@ h2 {
   padding: 1rem 1rem;
   text-align: center;
   font-size: 0.92rem;
-  color: #746c61;
+  color: #5c554b;
   background: linear-gradient(180deg, #f8f5ed 0%, #f2ede3 100%);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
@@ -1128,7 +1128,7 @@ details[open] summary::after { content: "\2212"; }
 <section class="hero">
   <div class="hero__content">
     <div class="hero__content-inner">
-      <img class="hero__logo" src="images/logo-keystone-masonry.png" alt="Keystone Masonry &amp; Construction Services — ACI Certified" width="1520" height="688" loading="eager" fetchpriority="high" decoding="async" />
+      <picture><source srcset="images/logo-keystone-masonry.webp" type="image/webp" /><img class="hero__logo" src="images/logo-keystone-masonry.png" alt="Keystone Masonry &amp; Construction Services — ACI Certified" width="1120" height="506" loading="eager" fetchpriority="high" decoding="async" /></picture>
       <h1 class="hero__title">First-Class Masonry Work<br />in Rochester NY. Built to Last.</h1>
       <p class="hero__subtitle">
         Patios, walkways, chimney repair, brick and stone work, and structural masonry
@@ -1391,61 +1391,61 @@ details[open] summary::after { content: "\2212"; }
 </section>
 
 <!-- LIGHTBOXES -->
-<div id="lb-fw" class="lightbox">
+<div id="lb-fw" class="lightbox" role="dialog" aria-modal="true" aria-label="Front walkway photo">
   <a href="#gallery-photos" class="lightbox__close" data-lightbox="close" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/front-walkway.webp" type="image/webp" />
   <img class="lightbox__img" src="images/front-walkway.jpg" alt="Stamped concrete front walkway" /></picture>
   <p class="lightbox__caption">Front walkway</p>
 </div>
-<div id="lb-cr" class="lightbox">
+<div id="lb-cr" class="lightbox" role="dialog" aria-modal="true" aria-label="Chimney rebuild photo">
   <a href="#gallery-photos" class="lightbox__close" data-lightbox="close" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/chimney-rebuild.webp" type="image/webp" />
   <img class="lightbox__img" src="images/chimney-rebuild.jpg" alt="Full brick chimney rebuild" /></picture>
   <p class="lightbox__caption">Chimney rebuild</p>
 </div>
-<div id="lb-csv" class="lightbox">
+<div id="lb-csv" class="lightbox" role="dialog" aria-modal="true" aria-label="Cultured stone veneer photo">
   <a href="#gallery-photos" class="lightbox__close" data-lightbox="close" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/cultured-stone-veneer.webp" type="image/webp" />
   <img class="lightbox__img" src="images/cultured-stone-veneer.jpg" alt="Cultured stone veneer, stamped patio" /></picture>
   <p class="lightbox__caption">Cultured stone veneer, stamped patio</p>
 </div>
-<div id="lb-sas" class="lightbox">
+<div id="lb-sas" class="lightbox" role="dialog" aria-modal="true" aria-label="Segmented arch steps photo">
   <a href="#gallery-photos" class="lightbox__close" data-lightbox="close" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/segmented-arch-steps.webp" type="image/webp" />
   <img class="lightbox__img" src="images/segmented-arch-steps.jpg" alt="Segmented arch steps" /></picture>
   <p class="lightbox__caption">Segmented arch steps</p>
 </div>
-<div id="lb-sp" class="lightbox">
+<div id="lb-sp" class="lightbox" role="dialog" aria-modal="true" aria-label="Stamped patio pre-seal photo">
   <a href="#gallery-photos" class="lightbox__close" data-lightbox="close" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/stamped-patio.webp" type="image/webp" />
   <img class="lightbox__img" src="images/stamped-patio.jpg" alt="Stamped patio pre-seal" /></picture>
   <p class="lightbox__caption">Stamped patio — pre-seal</p>
 </div>
-<div id="lb-spd" class="lightbox">
+<div id="lb-spd" class="lightbox" role="dialog" aria-modal="true" aria-label="Stamped patio post-seal photo">
   <a href="#gallery-photos" class="lightbox__close" data-lightbox="close" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/stamped-patio-detail.webp" type="image/webp" />
   <img class="lightbox__img" src="images/stamped-patio-detail.jpg" alt="Stamped patio post-seal" /></picture>
   <p class="lightbox__caption">Same patio — post-seal</p>
 </div>
-<div id="lb-fpo" class="lightbox">
+<div id="lb-fpo" class="lightbox" role="dialog" aria-modal="true" aria-label="Front porch overlay photo">
   <a href="#gallery-photos" class="lightbox__close" data-lightbox="close" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/front-porch-overlay.webp" type="image/webp" />
   <img class="lightbox__img" src="images/front-porch-overlay.jpg" alt="Front porch overlay, Pittsford" /></picture>
   <p class="lightbox__caption">Front porch overlay — Pittsford</p>
 </div>
-<div id="lb-bf" class="lightbox">
+<div id="lb-bf" class="lightbox" role="dialog" aria-modal="true" aria-label="Broom finish concrete photo">
   <a href="#gallery-photos" class="lightbox__close" data-lightbox="close" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/broom-finish-concrete.webp" type="image/webp" />
   <img class="lightbox__img" src="images/broom-finish-concrete.jpg" alt="Broom finish concrete" /></picture>
   <p class="lightbox__caption">Broom finish — Monroe County</p>
 </div>
-<div id="lb-fw2" class="lightbox">
+<div id="lb-fw2" class="lightbox" role="dialog" aria-modal="true" aria-label="Form work photo">
   <a href="#gallery-photos" class="lightbox__close" data-lightbox="close" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/form-work-for-steps.webp" type="image/webp" />
   <img class="lightbox__img" src="images/form-work-for-steps.jpg" alt="Form work" /></picture>
   <p class="lightbox__caption">Form work</p>
 </div>
-<div id="lb-bw" class="lightbox">
+<div id="lb-bw" class="lightbox" role="dialog" aria-modal="true" aria-label="Basement wall rebuild photo">
   <a href="#gallery-photos" class="lightbox__close" data-lightbox="close" aria-label="Close lightbox">&times;</a>
   <picture><source srcset="images/basement-wall-rebuild.webp" type="image/webp" />
   <img class="lightbox__img" src="images/basement-wall-rebuild.jpg" alt="Basement wall rebuild" /></picture>
@@ -1597,9 +1597,10 @@ details[open] summary::after { content: "\2212"; }
         <a class="btn" href="tel:+15854901600">Call Now</a>
         <a class="btn btn--secondary" href="mailto:don@stonemasonryny.com">Send an Email</a>
       </div>
-      <form class="quote-form" id="quote-form" aria-label="Request a free estimate" action="mailto:don@stonemasonryny.com" method="post" enctype="text/plain">
+      <form class="quote-form" id="quote-form" aria-label="Request a free estimate" action="https://formspree.io/f/{YOUR_FORM_ID}" method="POST">
         <h3>Or send a quick message</h3>
         <p class="quote-form-help" id="qf-help">Name and project details are required. Add a phone number if you want a callback instead of email.</p>
+        <input type="hidden" name="_subject" value="New estimate request from Keystone website" />
         <label for="qf-name">Name</label>
         <input type="text" id="qf-name" name="name" required autocomplete="name" enterkeyhint="next" placeholder="Your name" />
         <label for="qf-phone">Phone</label>
@@ -1608,7 +1609,7 @@ details[open] summary::after { content: "\2212"; }
         <textarea id="qf-message" name="message" rows="3" required enterkeyhint="send" placeholder="Briefly describe the repair or project"></textarea>
         <button type="submit" class="btn">Send Message</button>
         <p class="quote-form-feedback" id="qf-feedback" role="status" aria-live="polite"></p>
-        <p class="email-note">Submitting opens your email app with the message filled in so you can review it before sending.</p>
+        <p class="email-note">Messages go straight to Don's inbox — no call center, no sales team.</p>
       </form>
     </div>
     <aside class="service-area-card">
