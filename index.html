@@ -41,16 +41,45 @@
   "email": "don@stonemasonryny.com",
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Rochester",
+    "streetAddress": "1084 Lake Shore Boulevard",
+    "addressLocality": "Irondequoit",
     "addressRegion": "NY",
+    "postalCode": "14617",
     "addressCountry": "US"
   },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 43.2309,
+    "longitude": -77.5530
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "07:00",
+      "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "08:00",
+      "closes": "14:00"
+    }
+  ],
+  "founder": {
+    "@type": "Person",
+    "name": "Don DeManno",
+    "jobTitle": "Owner / Master Mason"
+  },
+  "foundingDate": "2015",
   "description": "Rochester NY masonry contractor with 30+ years experience. Specializing in patios, walkways, brick and stone work, chimney repair, masonry restoration, and structural masonry across Rochester, Monroe County, Ontario County, and Wayne County.",
+  "knowsAbout": ["masonry","chimney repair","tuckpointing","repointing","stamped concrete","concrete driveways","brick repair","stone veneer","retaining walls","freeze-thaw damage repair"],
   "areaServed": ["Rochester NY", "Greece NY", "Irondequoit NY", "Webster NY", "Penfield NY", "Pittsford NY", "Victor NY", "Monroe County NY", "Ontario County NY", "Wayne County NY"],
   "award": [
     "American Concrete Institute Certified Concrete Finisher",
     "Journeyman Bricklayer, Bricklayers and Allied Craftworkers"
-  ]
+  ],
+  "priceRange": "$$"
 }
 </script>
 <script type="application/ld+json">
@@ -131,6 +160,42 @@
       }
     }
   ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "@id": "https://cwschrad83.github.io/keystone-masonry/#business",
+  "review": [
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Ryan Schrader"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "Very professional. Don was always on site and completed the job well ahead of schedule and on budget.",
+      "datePublished": "2025-01-01"
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Gary Galletto"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "He did a professional job and took his time to make sure everything came out right. Did great work.",
+      "datePublished": "2025-01-01"
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Nicholas Tochelli"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "Don did outstanding, excellent masonry work.",
+      "datePublished": "2025-01-01"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": "3",
+    "bestRating": "5"
+  }
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1147,7 +1212,7 @@ details[open] summary::after { content: "\2212"; }
         <a class="btn btn--secondary" href="tel:+15854901600">Call 585-490-1600</a>
       </div>
       <p class="hero__cta-note">No sales crew, no call center, no pressure. Just a straight read on the job and what it actually needs.</p>
-      <p class="hero__availability"><span class="hero__availability-dot" aria-hidden="true"></span>Free on-site estimates across Rochester and the surrounding towns</p>
+      <p class="hero__availability"><span class="hero__availability-dot" aria-hidden="true"></span>Now scheduling spring &amp; summer 2026 projects — free on-site estimates</p>
       <div class="hero__proof" aria-label="Business highlights">
         <div class="proof-card">
           <strong>Owner on-site estimates.</strong>
