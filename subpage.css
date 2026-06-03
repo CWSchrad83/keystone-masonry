@@ -1,13 +1,14 @@
 /* ─── Base ─────────────────────────────────────────────────────── */
 :root{
   --color-text:#0b355f;
-  --color-text-muted:#5e574e;
+  --color-text-muted:#5c554b;
   --color-accent:#b8382d;
   --color-accent-hover:#992f26;
   --color-border:#d8cfba;
   --shadow-card:0 8px 24px rgba(11,53,95,.05);
-  --shadow-card-hover:0 14px 30px rgba(11,53,95,.1);
+  --shadow-card-hover:0 16px 36px rgba(11,53,95,.1);
   --transition-fast:.2s ease;
+  --transition-snap:.12s ease;
   --radius:999px;
 }
 
@@ -41,7 +42,7 @@ body{
 section{padding:4rem 8%;}
 a{
   color:var(--color-accent);
-  transition:color var(--transition-fast),background-color var(--transition-fast),border-color var(--transition-fast),box-shadow var(--transition-fast),transform var(--transition-fast);
+  transition:color var(--transition-snap),background-color var(--transition-snap),border-color var(--transition-snap),box-shadow var(--transition-fast),transform var(--transition-fast);
 }
 a:hover{color:var(--color-accent-hover);}
 a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visible,.header-link:focus-visible{
@@ -143,6 +144,8 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
 .cta-section h2,.cta-section h3{
   font-family:"Playfair Display",serif;
   font-size:2.2rem;
+  line-height:1.15;
+  letter-spacing:-0.015em;
   margin:0 0 .75rem;
   color:white;
 }
@@ -243,7 +246,8 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
 .page-title{
   font-family:"Playfair Display",serif;
   font-size:2.6rem;
-  line-height:1.2;
+  line-height:1.15;
+  letter-spacing:-0.02em;
   margin:0 0 1rem;
   color:#0b355f;
 }
@@ -284,6 +288,8 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
 .section-title{
   font-family:"Playfair Display",serif;
   font-size:2rem;
+  line-height:1.15;
+  letter-spacing:-0.015em;
   margin:0 0 1rem;
   color:#0b355f;
 }
@@ -348,6 +354,15 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
   object-fit:cover;
   display:block;
   border-radius:12px;
+  border:1px solid var(--color-border);
+  box-shadow:var(--shadow-card);
+  cursor:zoom-in;
+  transition:transform var(--transition-fast),box-shadow var(--transition-fast),border-color var(--transition-fast);
+}
+.photo-card:hover img{
+  transform:translateY(-3px);
+  border-color:rgba(184,56,45,.24);
+  box-shadow:var(--shadow-card-hover);
 }
 
 .photo-label{
@@ -375,6 +390,27 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
 /* ─── Link accent ───────────────────────────────────────────────── */
 .link-accent{color:var(--color-accent);font-weight:500;text-decoration:none;}
 .link-accent:hover{text-decoration:underline;}
+
+/* ─── Specs block ───────────────────────────────────────────────── */
+.specs-block{
+  margin-top:2rem;
+  padding:1.25rem 1.5rem;
+  background:#f7f4ed;
+  border-left:3px solid var(--color-accent);
+  border-radius:0 8px 8px 0;
+}
+.specs-block__title{
+  margin:0 0 .5rem;
+  font-weight:600;
+  color:var(--color-text);
+}
+.specs-block ul{
+  margin:0;
+  padding-left:1.25rem;
+  line-height:1.8;
+  color:var(--color-text-muted);
+}
+.specs-block strong{color:var(--color-text);}
 
 /* ─── Responsive ─────────────────────────────────────────────────── */
 @media(max-width:900px){
