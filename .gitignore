@@ -4,3 +4,16 @@ CLAUDE.md
 Thumbs.db
 .DS_Store
 website/
+
+# Marketing / export assets (not served by the site)
+*.mp4
+*.zip
+
+# Local agent / tooling scratch files
+.openclaw/
+AGENTS.md
+SOUL.md
+IDENTITY.md
+HEARTBEAT.md
+TOOLS.md
+USER.md
