@@ -139,117 +139,117 @@
     }, { passive: true });
   }
 
-  // ── GALLERY / LIGHTBOX TRACKING ──
-  // Tracks clicks on photo cards and lightbox interactions.
-  // If a lightbox is added in the future, hook it with:
-  //   data-lightbox="open" on the trigger element
-  //   data-lightbox="close" on the close button
+  // ── LIGHTBOX ──
+
+  function buildLightbox() {
+    const overlay = document.createElement("div");
+    overlay.id = "lightbox-overlay";
+    overlay.setAttribute("role", "dialog");
+    overlay.setAttribute("aria-modal", "true");
+    overlay.setAttribute("aria-label", "Photo viewer");
+    overlay.setAttribute("hidden", "");
+    overlay.innerHTML = `
+      <button class="lightbox-close" aria-label="Close photo">&times;</button>
+      <img class="lightbox-img" src="" alt="" />
+    `;
+
+    const style = document.createElement("style");
+    style.textContent = `
+      #lightbox-overlay {
+        position: fixed; inset: 0; z-index: 9999;
+        background: rgba(0,0,0,.88);
+        display: flex; align-items: center; justify-content: center;
+        padding: 1rem;
+        cursor: zoom-out;
+      }
+      #lightbox-overlay[hidden] { display: none; }
+      .lightbox-img {
+        max-width: 100%; max-height: 90vh;
+        object-fit: contain;
+        border-radius: 2px;
+        box-shadow: 0 8px 40px rgba(0,0,0,.6);
+        cursor: default;
+      }
+      .lightbox-close {
+        position: absolute; top: 1rem; right: 1.25rem;
+        background: none; border: none;
+        color: #fff; font-size: 2.5rem; line-height: 1;
+        cursor: pointer; padding: 0.25rem 0.5rem;
+        opacity: .8;
+      }
+      .lightbox-close:hover { opacity: 1; }
+      .photo-card img { cursor: zoom-in; }
+    `;
+
+    document.head.appendChild(style);
+    document.body.appendChild(overlay);
+
+    const lbImg = overlay.querySelector(".lightbox-img");
+    const lbClose = overlay.querySelector(".lightbox-close");
+    let lastFocused = null;
+
+    function open(img) {
+      lastFocused = document.activeElement;
+      lbImg.src = img.currentSrc || img.src;
+      lbImg.alt = img.alt;
+      overlay.removeAttribute("hidden");
+      document.body.style.overflow = "hidden";
+      lbClose.focus();
+      if (hasRealGaId) {
+        sendEvent("lightbox_open", { event_category: "gallery", event_label: img.alt || img.src });
+      }
+    }
+
+    function close() {
+      overlay.setAttribute("hidden", "");
+      document.body.style.overflow = "";
+      lbImg.src = "";
+      if (lastFocused && document.contains(lastFocused)) lastFocused.focus();
+      if (hasRealGaId) {
+        sendEvent("lightbox_close", { event_category: "gallery" });
+      }
+    }
+
+    document.addEventListener("click", (e) => {
+      const card = e.target.closest(".photo-card");
+      if (!card) return;
+      const img = card.querySelector("img");
+      if (img) { e.preventDefault(); open(img); }
+    });
+
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay || e.target === lbClose) close();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !overlay.hasAttribute("hidden")) {
+        e.preventDefault();
+        close();
+      }
+    });
+  }
+
+  // ── GALLERY TRACKING ──
 
   function bindGalleryTracking() {
     if (!hasRealGaId) return;
 
     document.addEventListener("click", (e) => {
-      // Photo card clicks (project galleries)
       const card = e.target.closest(".photo-card");
       if (card) {
         const img = card.querySelector("img");
         const label = card.querySelector(".photo-label");
         sendEvent("gallery_photo_click", {
           event_category: "gallery",
-          event_label: (label ? label.textContent.trim() : "") ||
-                       (img ? img.alt : "photo"),
+          event_label: (label ? label.textContent.trim() : "") || (img ? img.alt : "photo"),
           photo_src: img ? img.currentSrc || img.src : ""
         });
-      }
-
-      // Before/after phase badges
-      const phase = e.target.closest(".photo-phase");
-      if (phase) {
-        sendEvent("gallery_phase_view", {
-          event_category: "gallery",
-          event_label: phase.textContent.trim()
-        });
-      }
-
-      // Future lightbox hooks
-      const lightboxTrigger = e.target.closest("[data-lightbox='open']");
-      if (lightboxTrigger) {
-        sendEvent("lightbox_open", {
-          event_category: "gallery",
-          event_label: lightboxTrigger.getAttribute("data-photo") || "photo"
-        });
-      }
-
-      const lightboxClose = e.target.closest("[data-lightbox='close']");
-      if (lightboxClose) {
-        sendEvent("lightbox_close", { event_category: "gallery" });
       }
     });
   }
 
   function bindLightboxAccessibility() {
-    const galleryRoot = document.getElementById("gallery-photos");
-    if (!galleryRoot) return;
-
-    let lastTrigger = null;
-
-    function getActiveLightbox() {
-      const hash = window.location.hash;
-      if (!hash) return null;
-      const target = document.querySelector(hash);
-      return target && target.classList.contains("lightbox") ? target : null;
-    }
-
-    function focusForHashChange() {
-      const active = getActiveLightbox();
-      if (active) {
-        const closeLink = active.querySelector(".lightbox__close");
-        if (closeLink) {
-          closeLink.focus();
-        }
-        return;
-      }
-
-      if (lastTrigger && document.contains(lastTrigger)) {
-        lastTrigger.focus();
-      }
-    }
-
-    document.addEventListener("click", (e) => {
-      const trigger = e.target.closest(".gallery-thumb[data-lightbox='open']");
-      if (trigger) {
-        lastTrigger = trigger;
-      }
-    });
-
-    document.addEventListener("keydown", (e) => {
-      const active = getActiveLightbox();
-      if (!active) return;
-
-      // Escape to close
-      if (e.key === "Escape") {
-        e.preventDefault();
-        window.location.hash = "gallery-photos";
-        return;
-      }
-
-      // Focus trap: keep Tab within the lightbox
-      if (e.key === "Tab") {
-        const focusable = active.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])');
-        if (focusable.length === 0) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (e.shiftKey) {
-          if (document.activeElement === first) { e.preventDefault(); last.focus(); }
-        } else {
-          if (document.activeElement === last) { e.preventDefault(); first.focus(); }
-        }
-      }
-    });
-
-    window.addEventListener("hashchange", () => {
-      window.requestAnimationFrame(focusForHashChange);
-    });
+    // Handled inside buildLightbox()
   }
 
   // ── FAQ TOGGLE TRACKING ──
@@ -408,6 +408,7 @@
     bindPhoneTracking();
     bindOutboundTracking();
     bindScrollDepth();
+    buildLightbox();
     bindGalleryTracking();
     bindLightboxAccessibility();
     bindFaqTracking();
