@@ -21,7 +21,7 @@
 <meta name="twitter:description" content="Chimney repair, patios, walkways, driveways, brick and stone work, and concrete projects across Rochester, Monroe County, Ontario County, and Wayne County." />
 <meta name="twitter:image" content="https://stonemasonryny.com/images/front-walkway.jpg" />
 <meta name="twitter:image:alt" content="Stamped concrete front walkway by Keystone Masonry in Rochester NY" />
-<script src="site.js" defer></script>
+<script src="site.js?v=2" defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -201,7 +201,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
 <link rel="preload" as="image" href="images/logo-keystone-masonry.webp" type="image/webp" />
 <style>
 :root {
@@ -217,14 +217,15 @@
   --color-footer-text: #c8b99c;
   --color-footer-link: #c4b99e;
   --color-footer-muted: #5c554b;
-  --shadow-card: 0 8px 24px rgba(11, 53, 95, 0.05);
-  --shadow-card-hover: 0 16px 36px rgba(11, 53, 95, 0.1);
-  --font-body: Inter, sans-serif;
+  --shadow-card: 0 1px 2px rgba(11, 53, 95, 0.04), 0 10px 30px rgba(11, 53, 95, 0.06);
+  --shadow-card-hover: 0 2px 4px rgba(11, 53, 95, 0.05), 0 22px 48px rgba(11, 53, 95, 0.12);
+  --font-body: "Libre Franklin", Inter, sans-serif;
   --font-heading: "Playfair Display", serif;
-  --section-padding: 5.5rem 8%;
+  --section-padding: clamp(4.5rem, 5vw + 3rem, 7rem) 8%;
   --container-width: 1180px;
   --radius: 18px;
   --transition-fast: 0.2s ease;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -278,33 +279,47 @@ h1, h2, h3, p { margin-top: 0; }
 h2 {
   margin-bottom: 1.2rem;
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 2.4vw, 2.6rem);
-  line-height: 1.15;
+  font-weight: 600;
+  font-size: clamp(2.1rem, 2.8vw, 2.9rem);
+  line-height: 1.12;
   letter-spacing: -0.015em;
+  text-wrap: balance;
 }
+h3 { text-wrap: balance; }
 .container {
   width: min(100%, var(--container-width));
   margin: 0 auto;
 }
 .eyebrow {
-  margin: 0;
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.11em;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0 0 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-text-muted);
+  color: var(--color-accent);
+}
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-accent);
+  opacity: 0.85;
 }
 .section-intro {
   max-width: 640px;
   margin-bottom: 0;
-  font-size: 1.02rem;
-  line-height: 1.72;
+  font-size: 1.05rem;
+  line-height: 1.75;
   color: var(--color-text-muted);
 }
 .lede {
   max-width: 760px;
-  font-size: 1.05rem;
-  line-height: 1.72;
+  font-size: 1.08rem;
+  line-height: 1.75;
   color: var(--color-text-muted);
 }
 .section-alt {
@@ -398,9 +413,11 @@ h2 {
 .hero__title {
   margin: 0.7rem 0 1.1rem;
   font-family: var(--font-heading);
-  font-size: clamp(2.8rem, 5vw, 4.5rem);
-  line-height: 1.05;
+  font-weight: 600;
+  font-size: clamp(2.8rem, 5vw, 4.6rem);
+  line-height: 1.04;
   letter-spacing: -0.03em;
+  text-wrap: balance;
 }
 .hero__subtitle {
   max-width: 560px;
@@ -471,7 +488,16 @@ h2 {
 .hero__photos {
   display: grid;
   grid-template-rows: 1fr 1fr;
+  gap: 3px;
   min-height: 100%;
+  position: relative;
+}
+.hero__photos::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 24px 0 40px -28px rgba(11, 53, 95, 0.25);
 }
 .hero__photos picture { overflow: hidden; }
 .hero__photos img {
@@ -495,13 +521,13 @@ h2 {
   text-decoration: none;
   font-weight: 600;
   letter-spacing: 0.01em;
-  box-shadow: 0 10px 20px rgba(184, 56, 45, 0.16);
-  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  box-shadow: 0 1px 2px rgba(153, 47, 38, 0.35), 0 10px 22px rgba(184, 56, 45, 0.18);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), box-shadow 0.25s var(--ease-out), transform 0.25s var(--ease-out);
 }
 .btn:hover {
   background: var(--color-accent-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 14px 24px rgba(184, 56, 45, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 3px rgba(153, 47, 38, 0.3), 0 16px 30px rgba(184, 56, 45, 0.24);
 }
 .btn:active {
   transform: translateY(0);
@@ -582,13 +608,19 @@ h2 {
 }
 .service-card {
   height: 100%;
-  padding: 1.75rem;
+  padding: 1.9rem 1.75rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.9);
   box-shadow: var(--shadow-card);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
 }
-.service-card h3 { margin-bottom: 0.75rem; font-size: 1.08rem; }
+.service-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(184, 56, 45, 0.22);
+  box-shadow: var(--shadow-card-hover);
+}
+.service-card h3 { margin-bottom: 0.75rem; font-size: 1.12rem; }
 .service-card p {
   margin-bottom: 0;
   font-size: 0.94rem;
@@ -606,11 +638,12 @@ h2 {
 .photo-gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1rem;
-  margin-top: 2rem;
+  gap: 1.25rem;
+  margin-top: 2.25rem;
 }
 .gallery-thumb {
-  display: block;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   border-radius: 14px;
   border: 1px solid var(--color-border);
@@ -618,17 +651,18 @@ h2 {
   background: var(--color-surface-tint);
   cursor: zoom-in;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
 }
 .gallery-thumb:hover {
-  transform: translateY(-3px);
-  border-color: rgba(184, 56, 45, 0.24);
+  transform: translateY(-4px);
+  border-color: rgba(184, 56, 45, 0.28);
   box-shadow: var(--shadow-card-hover);
 }
 .gallery-thumb:focus-visible {
   border-color: rgba(184, 56, 45, 0.32);
   box-shadow: var(--shadow-card-hover);
 }
+.gallery-thumb picture { overflow: hidden; display: block; flex: 1; }
 .gallery-thumb img {
   width: 100%;
   height: auto; /* required: overrides HTML height attr so aspect-ratio works */
@@ -636,15 +670,32 @@ h2 {
   object-fit: cover;
   object-position: center;
   display: block;
+  transition: transform 0.6s var(--ease-out);
 }
+.gallery-thumb:hover img { transform: scale(1.045); }
 .gallery-thumb img[data-crop="top"]    { object-position: center 20%; }
 .gallery-thumb img[data-crop="bottom"] { object-position: center 80%; }
+@media (min-width: 721px) {
+  .photo-gallery-grid > .gallery-thumb:first-child {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .photo-gallery-grid > .gallery-thumb:first-child img {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+  .photo-gallery-grid > .gallery-thumb:first-child .gallery-thumb-label {
+    font-size: 0.92rem;
+  }
+}
 .gallery-thumb-label {
   display: block;
-  padding: 0.55rem 0.9rem 0.65rem;
+  padding: 0.6rem 0.95rem 0.7rem;
   font-size: 0.84rem;
+  font-weight: 500;
   color: var(--color-text-muted);
   background: #fff;
+  border-top: 1px solid rgba(216, 207, 186, 0.5);
 }
 
 /* ── LIGHTBOX ── */
@@ -703,25 +754,33 @@ h2 {
 }
 .process-step {
   counter-increment: process;
-  padding: 1.5rem;
+  padding: 1.6rem 1.5rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: #fff;
   box-shadow: var(--shadow-card);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+}
+.process-step:hover {
+  transform: translateY(-4px);
+  border-color: rgba(184, 56, 45, 0.22);
+  box-shadow: var(--shadow-card-hover);
 }
 .process-step::before {
   content: counter(process);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  margin-bottom: 0.9rem;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 0.95rem;
   border-radius: 999px;
   font-family: var(--font-heading);
+  font-weight: 600;
   font-size: 1.5rem;
   color: var(--color-accent);
   background: rgba(184, 56, 45, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(184, 56, 45, 0.14);
 }
 .process-step h3 { margin-bottom: 0.5rem; font-size: 1rem; }
 .process-step p {
@@ -886,8 +945,10 @@ summary::after {
   font-size: 1.3rem;
   font-weight: 300;
   color: var(--color-accent);
+  transition: transform 0.3s var(--ease-out);
 }
-details[open] summary::after { content: "\2212"; }
+summary:hover { color: var(--color-accent); }
+details[open] summary::after { content: "\2212"; transform: rotate(180deg); }
 .faq-answer {
   max-width: 680px;
   padding: 0.1rem 0 1.25rem;
@@ -905,11 +966,17 @@ details[open] summary::after { content: "\2212"; }
   margin-top: 2rem;
 }
 .problem-item {
-  padding: 1.4rem 1.6rem;
+  padding: 1.5rem 1.6rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: rgba(255,255,255,0.9);
   box-shadow: var(--shadow-card);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+}
+.problem-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(184, 56, 45, 0.22);
+  box-shadow: var(--shadow-card-hover);
 }
 .problem-item h3 { margin-bottom: 0.5rem; font-size: 1.02rem; }
 .problem-item p {
@@ -927,7 +994,7 @@ details[open] summary::after { content: "\2212"; }
   margin-top: 2rem;
 }
 .testimonial-card {
-  padding: 1.75rem;
+  padding: 1.85rem 1.75rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: #fff;
@@ -935,25 +1002,32 @@ details[open] summary::after { content: "\2212"; }
   position: relative;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
 }
 .testimonial-card::before {
   content: "\201C";
   position: absolute;
-  top: 0.75rem;
-  left: 1.4rem;
+  top: 0.7rem;
+  left: 1.35rem;
   font-family: var(--font-heading);
-  font-size: 4rem;
+  font-size: 4.5rem;
   line-height: 1;
   color: var(--color-accent);
-  opacity: 0.18;
+  opacity: 0.15;
   pointer-events: none;
 }
 .testimonial-text {
   margin: 0 0 1.25rem;
-  padding-top: 1.4rem;
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: var(--color-text-muted);
+  padding-top: 1.55rem;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.02rem;
+  line-height: 1.72;
+  color: #3d4c60;
   flex: 1;
 }
 .testimonial-byline {
@@ -1105,6 +1179,20 @@ details[open] summary::after { content: "\2212"; }
   color: var(--color-footer-muted);
 }
 
+/* ── SCROLL REVEAL (activated by site.js; no-JS falls back to visible) ── */
+@media (prefers-reduced-motion: no-preference) {
+  html.js-reveal .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  html.js-reveal .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* ── MOBILE CALL BAR ── */
 .mobile-call-bar { display: none; }
 
@@ -1213,7 +1301,7 @@ details[open] summary::after { content: "\2212"; }
         <a class="btn btn--secondary" href="tel:+15854901600">Call 585-490-1600</a>
       </div>
       <p class="hero__cta-note">No sales crew, no call center, no pressure. Just a straight read on the job and what it actually needs.</p>
-      <p class="hero__availability"><span class="hero__availability-dot" aria-hidden="true"></span>Now scheduling spring &amp; summer 2026 projects — free on-site estimates</p>
+      <p class="hero__availability"><span class="hero__availability-dot" aria-hidden="true"></span>Now scheduling summer &amp; fall 2026 projects — free on-site estimates</p>
       <div class="hero__proof" aria-label="Business highlights">
         <div class="proof-card">
           <strong>Owner on-site estimates.</strong>

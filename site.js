@@ -400,6 +400,59 @@
     });
   }
 
+  // ── SCROLL REVEAL ──
+  // Progressive enhancement: cards fade/rise in as they enter the viewport.
+  // Without JS (or with reduced motion) everything stays fully visible.
+
+  function initScrollReveal() {
+    if (!("IntersectionObserver" in window)) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    var selectors = [
+      ".service-card", ".gallery-thumb", ".process-step", ".problem-item",
+      ".testimonial-card", ".proof-card", ".about-card", ".photo-card"
+    ];
+    var items = document.querySelectorAll(selectors.join(","));
+    if (!items.length) return;
+
+    document.documentElement.classList.add("js-reveal");
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          el.classList.add("is-visible");
+          observer.unobserve(el);
+          // Drop reveal classes once the animation finishes so card hover
+          // transforms (which the reveal rules out-specify) work again.
+          window.setTimeout(function () {
+            el.classList.remove("reveal", "is-visible");
+            el.style.removeProperty("--reveal-delay");
+          }, 1100);
+        }
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+
+    items.forEach(function (el, i) {
+      el.classList.add("reveal");
+      // Stagger siblings inside the same parent grid for a gentle cascade.
+      var siblingIndex = Array.prototype.indexOf.call(el.parentNode.children, el);
+      el.style.setProperty("--reveal-delay", Math.min(siblingIndex, 5) * 70 + "ms");
+      observer.observe(el);
+    });
+
+    // Safety net: if the observer never delivers (blocked or broken),
+    // force-reveal everything so content is never left hidden.
+    window.setTimeout(function () {
+      items.forEach(function (el) {
+        if (el.classList.contains("reveal") && !el.classList.contains("is-visible")) {
+          el.classList.remove("reveal");
+          el.style.removeProperty("--reveal-delay");
+        }
+      });
+    }, 2000);
+  }
+
   // ── INIT ──
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -413,5 +466,6 @@
     bindLightboxAccessibility();
     bindFaqTracking();
     bindQuoteForm();
+    initScrollReveal();
   });
 })();

@@ -5,11 +5,12 @@
   --color-accent:#b8382d;
   --color-accent-hover:#992f26;
   --color-border:#d8cfba;
-  --shadow-card:0 8px 24px rgba(11,53,95,.05);
-  --shadow-card-hover:0 16px 36px rgba(11,53,95,.1);
+  --shadow-card:0 1px 2px rgba(11,53,95,.04),0 10px 30px rgba(11,53,95,.06);
+  --shadow-card-hover:0 2px 4px rgba(11,53,95,.05),0 22px 48px rgba(11,53,95,.12);
   --transition-fast:.2s ease;
   --transition-snap:.12s ease;
   --radius:999px;
+  --ease-out:cubic-bezier(.22,1,.36,1);
 }
 
 *,*::before,*::after{box-sizing:border-box;}
@@ -31,15 +32,17 @@ html{scroll-behavior:smooth;}
 .skip-link:focus-visible{transform:translateY(0);}
 
 body{
-  font-family:Inter,sans-serif;
+  font-family:"Libre Franklin",Inter,sans-serif;
   margin:0;
   color:var(--color-text);
-  line-height:1.6;
+  line-height:1.65;
   background:white;
   overflow-x:clip;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
 }
 
-section{padding:4rem 8%;}
+section{padding:clamp(3.5rem,4vw+2rem,5.5rem) 8%;}
 a{
   color:var(--color-accent);
   transition:color var(--transition-snap),background-color var(--transition-snap),border-color var(--transition-snap),box-shadow var(--transition-fast),transform var(--transition-fast);
@@ -135,19 +138,21 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
 
 /* ─── CTA section ───────────────────────────────────────────────── */
 .cta-section{
-  background:#0b355f;
+  background:linear-gradient(180deg,#0c3a67 0%,#0b355f 55%,#092c50 100%);
   color:white;
   text-align:center;
-  padding:4rem 8%;
+  padding:clamp(4rem,4vw+2.5rem,5.5rem) 8%;
 }
 
 .cta-section h2,.cta-section h3{
   font-family:"Playfair Display",serif;
-  font-size:2.2rem;
-  line-height:1.15;
+  font-weight:600;
+  font-size:clamp(1.9rem,2.8vw,2.5rem);
+  line-height:1.14;
   letter-spacing:-0.015em;
   margin:0 0 .75rem;
   color:white;
+  text-wrap:balance;
 }
 
 .cta-section p{
@@ -236,20 +241,34 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
 }
 
 .page-eyebrow{
+  display:flex;
+  align-items:center;
+  gap:.65rem;
   text-transform:uppercase;
-  letter-spacing:.12em;
-  font-size:.75rem;
-  color:#5c554b;
-  margin:0 0 .5rem;
+  letter-spacing:.14em;
+  font-size:.78rem;
+  font-weight:700;
+  color:var(--color-accent);
+  margin:0 0 .6rem;
+}
+.page-eyebrow::before{
+  content:"";
+  width:26px;
+  height:2px;
+  border-radius:2px;
+  background:var(--color-accent);
+  opacity:.85;
 }
 
 .page-title{
   font-family:"Playfair Display",serif;
-  font-size:2.6rem;
-  line-height:1.15;
+  font-weight:600;
+  font-size:clamp(2.1rem,3.4vw,2.9rem);
+  line-height:1.12;
   letter-spacing:-0.02em;
   margin:0 0 1rem;
   color:#0b355f;
+  text-wrap:balance;
 }
 
 .page-intro{
@@ -278,20 +297,34 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
 
 /* ─── Section headers ───────────────────────────────────────────── */
 .section-eyebrow{
+  display:flex;
+  align-items:center;
+  gap:.65rem;
   text-transform:uppercase;
-  letter-spacing:.12em;
-  font-size:.75rem;
-  color:#5c554b;
-  margin:0 0 .4rem;
+  letter-spacing:.14em;
+  font-size:.78rem;
+  font-weight:700;
+  color:var(--color-accent);
+  margin:0 0 .55rem;
+}
+.section-eyebrow::before{
+  content:"";
+  width:26px;
+  height:2px;
+  border-radius:2px;
+  background:var(--color-accent);
+  opacity:.85;
 }
 
 .section-title{
   font-family:"Playfair Display",serif;
-  font-size:2rem;
-  line-height:1.15;
+  font-weight:600;
+  font-size:clamp(1.85rem,2.6vw,2.35rem);
+  line-height:1.14;
   letter-spacing:-0.015em;
   margin:0 0 1rem;
   color:#0b355f;
+  text-wrap:balance;
 }
 
 .section-intro{
@@ -319,13 +352,15 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
   font-weight:600;
   letter-spacing:.02em;
   border-radius:var(--radius);
-  box-shadow:0 10px 20px rgba(192,57,43,.14);
+  box-shadow:0 1px 2px rgba(153,47,38,.35),0 10px 22px rgba(184,56,45,.18);
+  transition:background-color var(--transition-fast),box-shadow .25s var(--ease-out),transform .25s var(--ease-out);
 }
 
 .btn:hover{
   background:var(--color-accent-hover);
   color:white;
-  transform:translateY(-1px);
+  transform:translateY(-2px);
+  box-shadow:0 2px 3px rgba(153,47,38,.3),0 16px 30px rgba(184,56,45,.24);
 }
 
 /* ─── Photo grid ────────────────────────────────────────────────── */
@@ -353,20 +388,21 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
   aspect-ratio:4/3;
   object-fit:cover;
   display:block;
-  border-radius:12px;
+  border-radius:14px;
   border:1px solid var(--color-border);
   box-shadow:var(--shadow-card);
   cursor:zoom-in;
-  transition:transform var(--transition-fast),box-shadow var(--transition-fast),border-color var(--transition-fast);
+  transition:transform .3s var(--ease-out),box-shadow .3s var(--ease-out),border-color .3s var(--ease-out);
 }
 .photo-card:hover img{
-  transform:translateY(-3px);
-  border-color:rgba(184,56,45,.24);
+  transform:translateY(-4px);
+  border-color:rgba(184,56,45,.28);
   box-shadow:var(--shadow-card-hover);
 }
 
 .photo-label{
   font-size:.86rem;
+  font-weight:500;
   color:var(--color-text-muted);
   margin:.65rem 0 0;
   line-height:1.5;
@@ -383,7 +419,7 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
 
 /* ─── Prose ─────────────────────────────────────────────────────── */
 .prose{max-width:660px;}
-.prose h2{font-family:"Playfair Display",serif;font-size:1.55rem;line-height:1.25;color:#0b355f;margin:0 0 1rem;}
+.prose h2{font-family:"Playfair Display",serif;font-weight:600;font-size:1.6rem;line-height:1.25;color:#0b355f;margin:0 0 1rem;text-wrap:balance;}
 .prose p{color:#3d4f6e;font-size:.97rem;line-height:1.75;margin:0 0 1rem;}
 .prose p:last-child{margin-bottom:0;}
 
@@ -473,6 +509,20 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
     font-weight:600;
   }
 }
+/* ─── Scroll reveal (activated by site.js; no-JS stays visible) ──── */
+@media(prefers-reduced-motion:no-preference){
+  html.js-reveal .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .65s var(--ease-out),transform .65s var(--ease-out);
+    transition-delay:var(--reveal-delay,0ms);
+  }
+  html.js-reveal .reveal.is-visible{
+    opacity:1;
+    transform:none;
+  }
+}
+
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
   *,*::before,*::after{
