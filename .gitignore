@@ -8,6 +8,7 @@ website/
 # Marketing / export assets (not served by the site)
 *.mp4
 *.zip
+gemini-upload/
 
 # Local agent / tooling scratch files
 .openclaw/
