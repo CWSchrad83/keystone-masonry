@@ -509,6 +509,59 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
     font-weight:600;
   }
 }
+/* ─── Testimonial card (mirrors homepage styling) ────────────────── */
+.testimonial-card{
+  max-width:640px;
+  margin:1.75rem 0 0;
+  padding:1.85rem 1.75rem;
+  border:1px solid var(--color-border);
+  border-radius:18px;
+  background:#fff;
+  box-shadow:var(--shadow-card);
+  position:relative;
+  transition:transform .3s var(--ease-out),box-shadow .3s var(--ease-out);
+}
+.testimonial-card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow-card-hover);
+}
+.testimonial-card::before{
+  content:"\201C";
+  position:absolute;
+  top:.7rem;
+  left:1.35rem;
+  font-family:"Playfair Display",serif;
+  font-size:4.5rem;
+  line-height:1;
+  color:var(--color-accent);
+  opacity:.15;
+  pointer-events:none;
+}
+.testimonial-text{
+  margin:0 0 1.25rem;
+  padding-top:1.55rem;
+  font-family:"Playfair Display",serif;
+  font-style:italic;
+  font-size:1.02rem;
+  line-height:1.72;
+  color:#3d4c60;
+}
+.testimonial-byline{
+  margin:0;
+  font-size:.88rem;
+  font-weight:600;
+  color:var(--color-text);
+  padding-top:1rem;
+  border-top:1px solid var(--color-border);
+}
+.testimonial-byline span{
+  display:block;
+  font-weight:400;
+  color:var(--color-text-muted);
+  margin-top:.15rem;
+  font-size:.85rem;
+}
+
 /* ─── Scroll reveal (activated by site.js; no-JS stays visible) ──── */
 @media(prefers-reduced-motion:no-preference){
   html.js-reveal .reveal{
