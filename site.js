@@ -211,17 +211,29 @@
     }
 
     document.addEventListener("click", (e) => {
+      if (e.target.closest("a, button")) return;
       const card = e.target.closest(".photo-card");
       if (!card) return;
       const img = card.querySelector("img");
       if (img) { e.preventDefault(); open(img); }
     });
 
+    document.querySelectorAll(".photo-card img").forEach((img) => {
+      img.tabIndex = 0;
+      img.setAttribute("role", "button");
+      img.setAttribute("aria-label", "View photo: " + img.alt);
+      img.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(img); }
+      });
+    });
     overlay.addEventListener("click", (e) => {
       if (e.target === overlay || e.target === lbClose) close();
     });
 
     document.addEventListener("keydown", (e) => {
+      if (e.key === "Tab" && !overlay.hasAttribute("hidden")) {
+        e.preventDefault(); lbClose.focus();
+      }
       if (e.key === "Escape" && !overlay.hasAttribute("hidden")) {
         e.preventDefault();
         close();
@@ -318,11 +330,7 @@
       form.setAttribute("aria-busy", "true");
 
       window.clearTimeout(submitLockTimer);
-      submitLockTimer = window.setTimeout(() => {
-        submitButton.disabled = false;
-        submitButton.textContent = "Send Message";
-        form.removeAttribute("aria-busy");
-      }, 4000);
+
     }
 
     fields.forEach((field) => {
@@ -359,7 +367,7 @@
     form.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      const name = form.querySelector("#qf-name").value.trim();
+      if (form.getAttribute("aria-busy") === "true") return;
       if (!form.checkValidity()) { form.reportValidity(); return; }
 
       lockSubmit();
@@ -374,7 +382,7 @@
           form.reset();
           if (hasRealGaId) {
             sendEvent("form_submit", { event_category: "engagement", event_label: "quote_form" });
-            sendEvent("generate_lead", { event_category: "engagement", event_label: name });
+            sendEvent("generate_lead", { event_category: "engagement", event_label: "quote_form" });
           }
         } else {
           setFeedback("Something went wrong. Call 585-490-1600 or email don@stonemasonryny.com.", "error");

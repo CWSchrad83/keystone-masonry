@@ -86,22 +86,19 @@
       "@type": "Review",
       "author": {"@type": "Person", "name": "Ryan Schrader"},
       "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
-      "reviewBody": "Very professional. Don was always on site and completed the job well ahead of schedule and on budget.",
-      "datePublished": "2025-01-01"
+      "reviewBody": "Very professional. Don was always on site and completed the job well ahead of schedule and on budget."
     },
     {
       "@type": "Review",
       "author": {"@type": "Person", "name": "Gary Galletto"},
       "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
-      "reviewBody": "He did a professional job and took his time to make sure everything came out right. Did great work.",
-      "datePublished": "2025-01-01"
+      "reviewBody": "He did a professional job and took his time to make sure everything came out right. Did great work."
     },
     {
       "@type": "Review",
       "author": {"@type": "Person", "name": "Nicholas Tochelli"},
       "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
-      "reviewBody": "Don did outstanding, excellent masonry work.",
-      "datePublished": "2025-01-01"
+      "reviewBody": "Don did outstanding, excellent masonry work."
     }
   ],
   "aggregateRating": {
@@ -1799,11 +1796,13 @@ details[open] summary::after { content: "\2212"; transform: rotate(180deg); }
       </div>
       <form class="quote-form" id="quote-form" aria-label="Request a free estimate" action="https://formspree.io/f/xqeggkdb" method="POST">
         <h3>Or send a quick message</h3>
-        <p class="quote-form-help" id="qf-help">Name and project details are required. Add a phone number if you want a callback instead of email.</p>
+        <p class="quote-form-help" id="qf-help">Name, email, and project details are required. Add a phone number if you prefer a callback.</p>
         <input type="hidden" name="_subject" value="New estimate request from Keystone website" />
         <label for="qf-name">Name</label>
         <input type="text" id="qf-name" name="name" required autocomplete="name" enterkeyhint="next" placeholder="Your name" />
-        <label for="qf-phone">Phone</label>
+        <label for="qf-email">Email</label>
+        <input type="email" id="qf-email" name="email" required autocomplete="email" inputmode="email" placeholder="you@example.com" />
+        <label for="qf-phone">Phone (optional)</label>
         <input type="tel" id="qf-phone" name="phone" autocomplete="tel" inputmode="tel" enterkeyhint="next" placeholder="(585) 490-1600" />
         <label for="qf-message">What do you need done?</label>
         <textarea id="qf-message" name="message" rows="3" required enterkeyhint="send" placeholder="Briefly describe the repair or project"></textarea>
