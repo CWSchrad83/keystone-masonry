@@ -42,7 +42,7 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-section{padding:clamp(3.5rem,4vw+2rem,5.5rem) 8%;}
+section{padding:clamp(3.5rem,4vw + 2rem,5.5rem) 8%;}
 a{
   color:var(--color-accent);
   transition:color var(--transition-snap),background-color var(--transition-snap),border-color var(--transition-snap),box-shadow var(--transition-fast),transform var(--transition-fast);
@@ -141,7 +141,7 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
   background:linear-gradient(180deg,#0c3a67 0%,#0b355f 55%,#092c50 100%);
   color:white;
   text-align:center;
-  padding:clamp(4rem,4vw+2.5rem,5.5rem) 8%;
+  padding:clamp(4rem,4vw + 2.5rem,5.5rem) 8%;
 }
 
 .cta-section h2,.cta-section h3{
@@ -189,7 +189,7 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
 }
 
 .email-note{
-  color:#b5a990;
+  color:var(--color-text-muted);
   font-size:.86rem;
   margin-top:.6rem;
 }
@@ -230,7 +230,7 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
   border-top:1px solid rgba(255,255,255,.1);
   padding-top:1.2rem;
   text-align:center;
-  color:#5c554b;
+  color:#c4b99e;
 }
 
 /* ─── Page header (subpages) ────────────────────────────────────── */
@@ -385,6 +385,7 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
 
 .photo-card img{
   width:100%;
+  height:auto;
   aspect-ratio:4/3;
   object-fit:cover;
   display:block;
@@ -399,6 +400,7 @@ a:focus-visible,.btn:focus-visible,.nav-link:focus-visible,.nav-call:focus-visib
   border-color:rgba(184,56,45,.28);
   box-shadow:var(--shadow-card-hover);
 }
+.photo-card img:focus-visible{outline:3px solid var(--color-accent);outline-offset:4px;}
 
 .photo-label{
   font-size:.86rem;

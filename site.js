@@ -141,7 +141,78 @@
 
   // ── LIGHTBOX ──
 
+  function isolateDialog(dialog) {
+    const changed = [];
+    let branch = dialog;
+    while (branch && branch !== document.body) {
+      for (const sibling of branch.parentElement.children) {
+        if (sibling !== branch && !sibling.inert && !["SCRIPT", "STYLE"].includes(sibling.tagName)) {
+          sibling.inert = true;
+          changed.push(sibling);
+        }
+      }
+      branch = branch.parentElement;
+    }
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      changed.forEach((el) => { el.inert = false; });
+      document.body.style.overflow = previousOverflow;
+    };
+  }
+
+  function bindDialogKeys(isOpen, close, closeButton) {
+    document.addEventListener("keydown", (event) => {
+      if (!isOpen()) return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        close();
+      } else if (event.key === "Tab") {
+        event.preventDefault();
+        closeButton.focus();
+      }
+    });
+  }
+
+  function bindHashLightboxes() {
+    const dialogs = Array.from(document.querySelectorAll(".lightbox"));
+    if (!dialogs.length) return;
+    let active = null;
+    let opener = null;
+    let restoreBackground = null;
+
+    function sync() {
+      const next = dialogs.find((dialog) => "#" + dialog.id === window.location.hash) || null;
+      if (next === active) return;
+      if (restoreBackground) restoreBackground();
+      if (active && opener && !next) opener.focus({ preventScroll: true });
+      active = next;
+      restoreBackground = null;
+      if (active) {
+        opener = document.querySelector('a[href="#' + active.id + '"]');
+        restoreBackground = isolateDialog(active);
+        active.querySelector(".lightbox__close").focus({ preventScroll: true });
+      }
+    }
+    function close() {
+      const target = active.querySelector(".lightbox__close").getAttribute("href");
+      history.replaceState(null, "", target);
+      sync();
+    }
+    dialogs.forEach((dialog) => bindDialogKeys(
+      () => active === dialog, close, dialog.querySelector(".lightbox__close")
+    ));
+    dialogs.forEach((dialog) => dialog.addEventListener("click", (event) => {
+      if (active && (event.target === dialog || event.target.closest(".lightbox__close"))) {
+        event.preventDefault(); close();
+      }
+    }));
+    window.addEventListener("hashchange", sync);
+    sync();
+  }
+
   function buildLightbox() {
+    if (!document.querySelector(".photo-card img")) return;
     const overlay = document.createElement("div");
     overlay.id = "lightbox-overlay";
     overlay.setAttribute("role", "dialog");
@@ -150,7 +221,7 @@
     overlay.setAttribute("hidden", "");
     overlay.innerHTML = `
       <button class="lightbox-close" aria-label="Close photo">&times;</button>
-      <img class="lightbox-img" src="" alt="" />
+      <img class="lightbox-img" alt="" />
     `;
 
     const style = document.createElement("style");
@@ -178,6 +249,8 @@
         opacity: .8;
       }
       .lightbox-close:hover { opacity: 1; }
+      .lightbox-close { min-width: 44px; min-height: 44px; }
+      .lightbox-close:focus-visible { outline: 2px solid white; outline-offset: 3px; }
       .photo-card img { cursor: zoom-in; }
     `;
 
@@ -187,13 +260,14 @@
     const lbImg = overlay.querySelector(".lightbox-img");
     const lbClose = overlay.querySelector(".lightbox-close");
     let lastFocused = null;
+    let restoreBackground = null;
 
     function open(img) {
-      lastFocused = document.activeElement;
-      lbImg.src = img.currentSrc || img.src;
+      lastFocused = img;
+      lbImg.src = img.dataset.fullSrc || img.currentSrc || img.src;
       lbImg.alt = img.alt;
       overlay.removeAttribute("hidden");
-      document.body.style.overflow = "hidden";
+      restoreBackground = isolateDialog(overlay);
       lbClose.focus();
       if (hasRealGaId) {
         sendEvent("lightbox_open", { event_category: "gallery", event_label: img.alt || img.src });
@@ -202,8 +276,9 @@
 
     function close() {
       overlay.setAttribute("hidden", "");
-      document.body.style.overflow = "";
-      lbImg.src = "";
+      if (restoreBackground) restoreBackground();
+      restoreBackground = null;
+      lbImg.removeAttribute("src");
       if (lastFocused && document.contains(lastFocused)) lastFocused.focus();
       if (hasRealGaId) {
         sendEvent("lightbox_close", { event_category: "gallery" });
@@ -230,15 +305,7 @@
       if (e.target === overlay || e.target === lbClose) close();
     });
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Tab" && !overlay.hasAttribute("hidden")) {
-        e.preventDefault(); lbClose.focus();
-      }
-      if (e.key === "Escape" && !overlay.hasAttribute("hidden")) {
-        e.preventDefault();
-        close();
-      }
-    });
+    bindDialogKeys(() => !overlay.hidden, close, lbClose);
   }
 
   // ── GALLERY TRACKING ──
@@ -295,7 +362,6 @@
     const fields = Array.from(form.querySelectorAll("input, textarea"));
 
     let formStarted = false;
-    let submitLockTimer = null;
 
     function setFeedback(message, state) {
       if (!feedback) return;
@@ -320,7 +386,8 @@
         }
       }
 
-      field.setAttribute("aria-invalid", field.checkValidity() ? "false" : "true");
+      // validity.valid does not fire another invalid event (checkValidity does).
+      field.setAttribute("aria-invalid", field.validity.valid ? "false" : "true");
     }
 
     function lockSubmit() {
@@ -328,8 +395,6 @@
       submitButton.disabled = true;
       submitButton.textContent = "Sending...";
       form.setAttribute("aria-busy", "true");
-
-      window.clearTimeout(submitLockTimer);
 
     }
 
@@ -372,14 +437,19 @@
 
       lockSubmit();
 
+      const controller = new AbortController();
+      const requestTimer = window.setTimeout(() => controller.abort(), 20000);
+
       fetch(form.action, {
         method: "POST",
         body: new FormData(form),
-        headers: { "Accept": "application/json" }
+        headers: { "Accept": "application/json" },
+        signal: controller.signal
       }).then((res) => {
         if (res.ok) {
           setFeedback("Message sent — Don will get back to you soon.", "success");
           form.reset();
+          fields.forEach((field) => field.removeAttribute("aria-invalid"));
           if (hasRealGaId) {
             sendEvent("form_submit", { event_category: "engagement", event_label: "quote_form" });
             sendEvent("generate_lead", { event_category: "engagement", event_label: "quote_form" });
@@ -387,10 +457,12 @@
         } else {
           setFeedback("Something went wrong. Call 585-490-1600 or email don@stonemasonryny.com.", "error");
         }
-      }).catch(() => {
-        setFeedback("Network error — call 585-490-1600 or email don@stonemasonryny.com instead.", "error");
+      }).catch((error) => {
+        setFeedback(error.name === "AbortError"
+          ? "We couldn't confirm delivery in time. Your message is still here. Call 585-490-1600 or email don@stonemasonryny.com before trying again."
+          : "Network error — call 585-490-1600 or email don@stonemasonryny.com instead.", "error");
       }).finally(() => {
-        window.clearTimeout(submitLockTimer);
+        window.clearTimeout(requestTimer);
         if (submitButton) {
           submitButton.disabled = false;
           submitButton.textContent = "Send Message";
@@ -470,6 +542,7 @@
     bindOutboundTracking();
     bindScrollDepth();
     buildLightbox();
+    bindHashLightboxes();
     bindGalleryTracking();
     bindLightboxAccessibility();
     bindFaqTracking();
